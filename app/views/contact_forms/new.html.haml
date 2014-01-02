@@ -1,0 +1,9 @@
+
+.form
+	= provide(:title, 'Contact')
+
+	= simple_form_for @contact_form do |f|
+		= f.input :name, :required => false
+		= f.input :email, :required => false
+		= f.input :message, :as => :text, :required => false
+		= f.button :submit, 'Send message'

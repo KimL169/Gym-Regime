@@ -2,6 +2,14 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '4.0.2'
+gem 'active_attr'
+gem "simple_form", "~> 3.0.1"
+gem 'haml-rails'
+gem 'actionmailer', '~> 4.0.0'
+gem 'activemodel', '~> 4.0.0'
+gem "mail_form", ">= 1.3.0"
+gem 'rake'
+gem 'rdoc'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
