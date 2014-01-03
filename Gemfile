@@ -8,12 +8,17 @@ gem 'haml-rails'
 gem 'actionmailer', '~> 4.0.0'
 gem 'activemodel', '~> 4.0.0'
 gem "mail_form", ">= 1.3.0"
+gem 'foundation-rails'
 gem 'rake'
 gem 'rdoc'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+end
+
+group :assets do
+  gem 'modernizr-rails'
 end
 
 group :test do
