@@ -30,6 +30,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -169,6 +170,7 @@ DEPENDENCIES
   actionmailer (~> 4.0.0)
   active_attr
   activemodel (~> 4.0.0)
+  bcrypt-ruby (= 3.1.2)
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)
   foundation-rails

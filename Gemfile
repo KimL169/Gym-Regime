@@ -11,6 +11,7 @@ gem "mail_form", ">= 1.3.0"
 gem 'foundation-rails'
 gem 'rake'
 gem 'rdoc'
+gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
