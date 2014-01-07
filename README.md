@@ -26,7 +26,7 @@ Frameworks, languages and libraries
 - Ruby on Rails
 - Javascript 
 - HTML5
-- CSS
+- CSS/SASS
 - (possibly) AJAX
 - SQLite
 

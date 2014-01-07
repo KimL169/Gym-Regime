@@ -33,7 +33,6 @@ Logbook::Application.configure do
   port:                 587,
   domain:               'WorkoutBook.com',
   user_name:            'KRELandeweer@gmail.com',
-  password:             'candycane10',
   authentication:       'plain',
   enable_starttls_auto: true  }
 end
