@@ -1,20 +1,38 @@
+WorkoutBook
+===========
 
-This is a logbook application to record, track and display the results of workouts and bodycomposition changes.
+A workout and result tracking web app.
 
 
-Features:
+Features
+===========
 
-- User login/account
-- Personal profile
-- Edit/Update account settings
-- Email confirmation
-- Contact form
+- user sign up
+- email confirmation
+- user profile/settings
+- user profile update
+- contact form
 
-- Bodystats and calory entry/tracking page (weight, bodyfat, bodymeasurements)
-- Workout entry/tracking page 
-- One rep max calculator, maintenance/BRM calculator
-- Results tracking/display via graphs.
+- Workout creation (exercises, sets, reps) 
+- Workout entry/logging of results.
+- 1-rep max strength calculator and tracker.
+- Bodystat input and tracking, including calory calculator.
+- A display of results over time via graphs. 
+- Display of previous workout results on entry of new results.
 
-...(possibly more)
+Frameworks, languages and libraries
+==========
 
+- Ruby on Rails
+- Javascript 
+- HTML5
+- CSS
+- (possibly) AJAX
+- SQLite
+
+
+Project idea/philosophy
+==========
+This is a logbook app for keeping track of workouts and bodycomposition changes. 
+This app will (initially) be more oriented towards strength athletes and bodybuilding/fitness than towards all types of sports
 
