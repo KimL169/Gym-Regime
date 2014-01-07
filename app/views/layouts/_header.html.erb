@@ -12,14 +12,21 @@
 
       <!-- Right Nav Section -->
       <ul class="right">
-        <li class="active"><%= link_to "Logbook", root_path %></li>
+        <% if signed_in? %>
+        <li class="active"><%= link_to "Logbook", '#' %></li>           
+        <% else %>
+        <li class="active"><%= link_to "Sign Up", root_path %></li>
+
+        <% end %>     
+
         <li><%= link_to "Help",    help_path %></li>
+
         <% if signed_in? %>
           <li class="has-dropdown">
             <a href="#">Account</a>
               <ul class="dropdown">
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
               </ul>
           </li>

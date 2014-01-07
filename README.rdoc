@@ -5,7 +5,8 @@ This is a logbook application to record, track and display the results of workou
 Features:
 
 - User login/account
-- Personal profile and account settings
+- Personal profile
+- Edit/Update account settings
 - Email confirmation
 - Contact form
 
