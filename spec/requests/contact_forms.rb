@@ -1,4 +1,5 @@
 require 'spec/spec_helper'
+include ApplicationHelper
 
 describe "ContactForm" do 
 	it "delivers a valid message" do

@@ -1,5 +1,16 @@
 @import 'foundation';
+@import "foundation/components/buttons";
+@import "foundation/components/forms";
 
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 /* universal */
 
@@ -103,3 +114,41 @@ footer ul li {
   float: left;
   margin-left: 10px;
 }
+
+/* miscellaneous */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing
+}
+
+
+/* forms */
+
+.form {
+  width: 40%;
+  min-width: 200px;
+  margin:auto;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+/* images */
+
+img {
+  padding:1px;
+  border:1px solid #021a40;
+}
+

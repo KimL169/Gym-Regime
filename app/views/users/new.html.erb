@@ -1,0 +1,21 @@
+<% provide(:title, 'Sign up') %>
+
+
+<div class="row">
+	<div class="large-12 column">
+		<h1>Sign up</h1>
+		<br>
+		<div class="form">
+		<%= simple_form_for @user do |f| %>
+			
+			<%= f.input :name %>
+			<%= f.input :email %>
+			<%= f.input :password %>
+			<%= f.input :password_confirmation %>
+
+      	<%= f.button :submit, "Create my account" %>
+		<% end %>
+		</div>
+	</div>
+</div>
+

@@ -14,15 +14,18 @@
       <ul class="right">
         <li class="active"><%= link_to "Logbook", root_path %></li>
         <li><%= link_to "Help",    help_path %></li>
-
-        <li class="has-dropdown">
-          <a href="#">Account</a>
-          <ul class="dropdown">
-            <li><%= link_to "Profile",    root_path %></li>
-            <li><%= link_to "Settings", '#' %></li>
-            <li><%= link_to "Sign in", '#' %></li>
-          </ul>
-        </li>
+        <% if signed_in? %>
+          <li class="has-dropdown">
+            <a href="#">Account</a>
+              <ul class="dropdown">
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+              </ul>
+          </li>
+        <% else %>
+        <li><%= link_to "Sign in", signin_path %></li>
+        <% end %>
       </ul>
 
       <!-- Left Nav Section -->

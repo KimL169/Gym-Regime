@@ -1,28 +1,19 @@
-== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a logbook application to record, track and display the results of workouts and bodycomposition changes.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Features:
+
+- User login/account
+- Personal profile and account settings
+- Email confirmation
+- Contact form
+
+- Bodystats and calory entry/tracking page (weight, bodyfat, bodymeasurements)
+- Workout entry/tracking page 
+- One rep max calculator, maintenance/BRM calculator
+- Results tracking/display via graphs.
+
+...(possibly more)
+
+
