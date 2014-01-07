@@ -32,7 +32,8 @@ Logbook::Application.configure do
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'WorkoutBook.com',
-  user_name:            'KRELandeweer@gmail.com',
+  user_name: ENV["GMAIL_USERNAME"],
+  password: ENV["GMAIL_PASSWORD"],
   authentication:       'plain',
   enable_starttls_auto: true  }
 end

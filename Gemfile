@@ -13,6 +13,7 @@ gem 'rake'
 gem 'rdoc'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'jquery-validation-rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
