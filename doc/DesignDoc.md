@@ -1,36 +1,36 @@
 CONTROLLERS
 ============
 
-- StaticpagesController
-	- Home
-	- About
-	- Contact
-	- Help
-- UsersController
-	- new
-	- show
-	- edit
-	- create
-	- update
-- SessionsController
-	- new
-	- create
-	- destory
-- BodylogsController
-	- index
-	- new
-	- edit
-	- create
-	- destroy
-- WorkoutlogsController
-	- index
-	- new
-	- create
-	- destroy
-	- update
-- ContactFormsController
-	- new
-	- create
+StaticpagesController
+- Home
+- About
+- Contact
+- Help
+UsersController
+- new
+- show
+- edit
+- create
+- update
+SessionsController
+- new
+- create
+- destory
+BodylogsController
+- index
+- new
+- edit
+- create
+- destroy
+WorkoutlogsController
+- index
+- new
+- create
+- destroy
+- update
+ContactFormsController
+- new
+- create
 
 MODELS
 =============
