@@ -1,34 +1,34 @@
 CONTROLLERS
 ============
 
-StaticpagesController
+-StaticpagesController
 	- Home
 	- About
 	- Contact
 	- Help
-UsersController
+-UsersController
 	- new
 	- show
 	- edit
 	- create
 	- update
-SessionsController
+-SessionsController
 	- new
 	- create
 	- destory
-BodylogsController
+-BodylogsController
 	- index
 	- new
 	- edit
 	- create
 	- destroy
-WorkoutlogsController
+-WorkoutlogsController
 	- index
 	- new
 	- create
 	- destroy
 	- update
-ContactFormsController
+-ContactFormsController
 	- new
 	- create
 
