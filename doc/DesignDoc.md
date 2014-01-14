@@ -136,3 +136,20 @@ HTML
 - Use new line for every block, list or table element indent every child element
 - When quoting attributes, use double qoutation marks.
 
+
+JAVASCRIPT
+---------------
+
+- always use var to declare variables
+- always end lines with a semi-colon
+- use standard rather that non-standard features
+- use camelCaseNames and UPPERCASE constants, but avoid the const keyword which isn’t supported in IE
+- use namespacing techniques
+- avoid eval() except for deserialization (strangely, JSON.Parse isn’t mentioned as an alternative)
+- avoid with() on objects and for-in on arrays
+- use array and object literals rather than more verbose declarations
+- be aware of truthy and falsy rules
+- do not use IE conditional comments in your JavaScript source
+- don’t modify the prototypes of built-in objects — that’s a shame since it’s one of JavaScripts more powerful features, but you know it’ll lead to problems
+- use closures carefully and do not introduce circular references
+
