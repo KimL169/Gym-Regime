@@ -2,35 +2,35 @@ CONTROLLERS
 ============
 
 StaticpagesController
-- Home
-- About
-- Contact
-- Help
+	- Home
+	- About
+	- Contact
+	- Help
 UsersController
-- new
-- show
-- edit
-- create
-- update
+	- new
+	- show
+	- edit
+	- create
+	- update
 SessionsController
-- new
-- create
-- destory
+	- new
+	- create
+	- destory
 BodylogsController
-- index
-- new
-- edit
-- create
-- destroy
+	- index
+	- new
+	- edit
+	- create
+	- destroy
 WorkoutlogsController
-- index
-- new
-- create
-- destroy
-- update
+	- index
+	- new
+	- create
+	- destroy
+	- update
 ContactFormsController
-- new
-- create
+	- new
+	- create
 
 MODELS
 =============
