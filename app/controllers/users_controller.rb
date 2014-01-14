@@ -27,7 +27,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			sign_in @user
-			redirect_to @user, notice: "Welcome to the WorkoutBook"
+			flash[:success] = "Welcome to the WorkoutBook #{@user.name}!"
+			redirect_to @user
 		else
 			render 'new'
 		end

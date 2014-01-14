@@ -1,0 +1,15 @@
+<% provide(:title, 'Workout Log') %>
+<h1>Workout Log</h1>
+
+<%= simple_form_for @workout do |w| %>
+	<%= w.input :name %>
+	<%= w.input :comment %>
+
+
+	<%=  w.simple_field_for @exercise do |e| %>
+		<%= e.input :name %>
+		<%= e.input :comment %>
+
+	<% end %>
+	<%= w.button :submit %>
+<% end %>

@@ -1,0 +1,2 @@
+module BodylogsHelper
+end

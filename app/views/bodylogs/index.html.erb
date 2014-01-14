@@ -1,0 +1,22 @@
+<% provide(:title, 'Body Log') %>
+
+<h1>Results</h1>
+<br>
+
+<div class="row">
+	<div class="large-12">
+		<dl class="tabs" data-tab>
+		  <dd class="active"><a href="#panel2-1">Table view</a></dd>
+		  <dd><a href="#panel2-2">Graph</a></dd>
+		</dl>
+		<div class="tabs-content">
+		  <div class="content active" id="panel2-1">
+		  		<%= render partial: "bodylogtable" %>
+		  </div>
+		  <div class="content" id="panel2-2">
+		    <p><%= render partial: "bodylogcalendar" %></p>
+		  </div>
+		</div>
+	</div>
+</div>
+

@@ -3,7 +3,7 @@
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
-        <%= link_to 'WorkoutBook', '#', id: "logo" %>
+        <%= link_to 'WorkoutBook', root_path, id: "logo" %>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
@@ -13,14 +13,21 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <% if signed_in? %>
-        <li class="active"><%= link_to "Logbook", '#' %></li>           
+        <li class="divider"></li>
+        <li><%= link_to "Workout Log", '/workoutlog' %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Body Log", '/bodylogs/new' %></li>
+        <li class="divider"></li>
+        <li><%=  link_to "Tools", '/tools' %></li>
+        <li class="divider"></li>
         <% else %>
-        <li class="active"><%= link_to "Sign Up", root_path %></li>
+        <li><%= link_to "Sign Up", signup_path %></li> 
+        <li class="divider"></li>
 
         <% end %>     
-
+      
         <li><%= link_to "Help",    help_path %></li>
-
+        <li class="divider"></li>
         <% if signed_in? %>
           <li class="has-dropdown">
             <a href="#">Account</a>

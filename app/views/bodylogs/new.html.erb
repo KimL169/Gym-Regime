@@ -1,0 +1,13 @@
+<% provide(:title, 'Body Log') %>
+
+<h1>Body Log</h1>
+<br>
+
+<div class="form">
+	<%= simple_form_for @bodylog do |l| %>
+		<%= l.input :weight, title: "Weight in kg", data: {tooltip: true} %>
+		<%= l.input :bodyfat %>
+		<%= l.input :kcal %>
+		<%= l.button :submit, 'Enter Log' %>
+	<% end %>
+</div>

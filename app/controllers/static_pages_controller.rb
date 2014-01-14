@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
 
 	def home
-		if signed_in? 
-			redirect_to logbook_path
+		if signed_in?
+			redirect_to '/workoutlog'
 		end
 	end
 
@@ -10,6 +10,9 @@ class StaticPagesController < ApplicationController
 	end
 
 	def about 
+	end
+
+	def tools
 	end
 
 end

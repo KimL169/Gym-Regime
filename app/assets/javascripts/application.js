@@ -10,13 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jsapi
 //= require jquery
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require foundation-datetimepicker
 //= require_tree .
 
 
 $(document).foundation();
+
+$('.datepicker').fdatepicker()

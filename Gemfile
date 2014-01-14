@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 ruby '2.0.0'
 
@@ -14,9 +15,16 @@ gem 'rdoc'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'jquery-validation-rails'
 gem 'figaro'
+gem 'will_paginate-foundation'
+gem 'groupdate'
+gem "chartkick"
+gem 'tabulous'
+gem 'jeditable-rails'
+gem 'foundation-datetimepicker-rails'
+gem "watu_table_builder", :require => "table_builder"
 
 group :development, :test do
-  gem 'sqlite3', '1.3.8'
+  gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
 end
 

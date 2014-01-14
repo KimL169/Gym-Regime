@@ -18,10 +18,10 @@ class ContactFormsController < ApplicationController
     end
   end
 
+
   private
 
   def secure_params
     params.require(:contact_form).permit(:name, :email, :message)
   end
 end
-

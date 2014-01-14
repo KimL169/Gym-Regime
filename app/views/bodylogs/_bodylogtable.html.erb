@@ -1,0 +1,29 @@
+<br>
+<div class="large-12 column">
+	<div class="row">
+		<table>
+			<thread>
+				<tr>
+					<th width ="150">Date</th>
+					<th width ="150">Weight</th>
+					<th width ="150">Bodyfat %</th>
+					<th width ="150">Calories</th>
+				</tr>
+			</thread>
+			<tbody>
+				
+				<% @bodylogsTable.each do |l| %>
+				<tr>
+					<td><%= l.created_at.strftime("%d %b. %Y") %></td>
+					<td><%= l.weight %></td>
+					<td><%= l.bodyfat %></td>
+					<td><%= l.kcal %></td>
+				</tr>
+				 <% end %>		
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<%= will_paginate @bodylogsTable, renderer: FoundationPagination::Rails %>

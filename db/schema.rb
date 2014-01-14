@@ -11,9 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106115614) do
+ActiveRecord::Schema.define(version: 20140110143001) do
+
+  create_table "bodylogs", force: true do |t|
+    t.float    "weight"
+    t.integer  "kcal"
+    t.float    "bodyfat"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contact_forms", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exercises", force: true do |t|
+    t.string   "name"
+    t.string   "comment"
+    t.integer  "workout_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "segments", force: true do |t|
+    t.float    "weight"
+    t.integer  "reps"
+    t.integer  "intensity"
+    t.integer  "exercise_id"
+    t.integer  "workout_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,5 +57,13 @@ ActiveRecord::Schema.define(version: 20140106115614) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "workouts", force: true do |t|
+    t.string   "name"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
