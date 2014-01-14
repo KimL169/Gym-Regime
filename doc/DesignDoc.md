@@ -112,3 +112,27 @@ Ruby on Rails
 
 CSS
 -----------------
+
+- Use soft-tabs with a two space indent.
+- Put spaces after : in property declarations.
+- Put spaces before { in rule declarations.
+- Use hex color codes #000 unless using rgba.
+- Use // for comment blocks (instead of /* */).
+- Document styles with KSS.
+- Use px for font-size, because it offers absolute control over text. Additionally, unit-less line-height is preferred because it does not inherit a percentage value of its parent element, but instead is based on a multiplier of the font-size.
+- use meaningful or generic ID class names
+- user ID and cass names that are as short as possible but as long as necessary.
+- seperate rules by new lines.
+
+- Group sections by section comment
+
+HTML
+-----------------
+
+- Doctype: use HTML5
+- Use valid HTML wherever possible
+- Use HTML according to its purpose
+- Seperate structure from presentation from behavior (seperation of concerns)
+- Use new line for every block, list or table element indent every child element
+- When quoting attributes, use double qoutation marks.
+
