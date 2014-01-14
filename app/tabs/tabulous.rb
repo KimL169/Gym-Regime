@@ -4,7 +4,7 @@ Tabulous.setup do
 
     bodylogsnew_tab do
       text          { 'Log Entry' }
-      link_path     { 'bodylogs/new' }
+      link_path     { new_bodylog_path }
       visible_when  { true }
       enabled_when  { true }
       active_when   { in_action('new').of_controller('bodylogs') }

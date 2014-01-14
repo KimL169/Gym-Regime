@@ -17,11 +17,15 @@
   </head>
   <body>
       <%= render 'layouts/header' %>
-      <%= tabs %>
+
+      <ul class="tabs" > 
+        <%= tabs %> 
+      </ul>
+
       <%= render 'shared/notice' %>
 
-  <div class="panel">
-    <%= yield %>
+    <div class="panel">
+      <%= yield %>
     </div>
 
     <%= render 'layouts/footer' %>

@@ -22,6 +22,7 @@ gem 'tabulous'
 gem 'jeditable-rails'
 gem 'foundation-datetimepicker-rails'
 gem "watu_table_builder", :require => "table_builder"
+gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 group :development, :test do
   gem 'sqlite3'

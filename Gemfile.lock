@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/aaronchi/best_in_place.git
+  revision: 1152e2256afd485e66602833fd99d09d60994841
+  specs:
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -194,6 +202,7 @@ DEPENDENCIES
   active_attr
   activemodel (~> 4.0.0)
   bcrypt-ruby (= 3.1.2)
+  best_in_place!
   capybara (= 2.1.0)
   chartkick
   coffee-rails (= 4.0.1)

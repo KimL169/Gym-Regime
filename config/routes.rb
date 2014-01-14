@@ -13,7 +13,6 @@ Logbook::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'contact_forms#new', via: 'get'
-  match '/bodylogs', to: 'bodylogs#new', via: 'get'
   match '/workoutlog', to: 'workoutlogs#new', via: 'get'
   match '/tools', to: 'static_pages#tools', via: 'get'
 

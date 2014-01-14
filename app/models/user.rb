@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
-	has_many :bodylogs
 	has_many :workouts
+	has_many :bodylogs do
+		
+		def today
+			where(:created_at => (Time.now.beginning_of_day..Time.now))
+		end
+	end
+
 
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token

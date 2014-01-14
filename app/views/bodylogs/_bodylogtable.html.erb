@@ -1,6 +1,11 @@
 <br>
 <div class="large-12 column">
 	<div class="row">
+	<h2 id="month">
+		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y/%m") %>
+		<%= h @date.strftime("%B %Y") %>
+		<%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y/%m") %>
+	</h2>
 		<table>
 			<thread>
 				<tr>
@@ -12,12 +17,12 @@
 			</thread>
 			<tbody>
 				
-				<% @bodylogsTable.each do |l| %>
+				<% @bodylogsTable.each do |bodylog| %>
 				<tr>
-					<td><%= l.created_at.strftime("%d %b. %Y") %></td>
-					<td><%= l.weight %></td>
-					<td><%= l.bodyfat %></td>
-					<td><%= l.kcal %></td>
+					<td><%= bodylog.created_at.strftime("%d %b. %Y") %></td>
+					<td><%= best_in_place bodylog, :weight %></td>
+					<td><%= best_in_place bodylog, :bodyfat %></td>
+					<td><%= best_in_place bodylog, :kcal %></td>
 				</tr>
 				 <% end %>		
 			</tbody>

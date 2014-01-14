@@ -1,7 +1,37 @@
 <% provide(:title, 'Help') %>
 
-<div class="center">
-	<h1>Help</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nihil, illo, sint quas laboriosam labore ipsa exercitationem facere aliquam expedita placeat repudiandae dolores molestiae minus dolore aperiam atque voluptatem inventore quod quia quasi quae aliquid voluptatibus eligendi quibusdam doloribus beatae. Aut, sapiente, ullam, dolorum provident aliquid deserunt accusantium unde fugiat sequi reprehenderit quibusdam qui cupiditate assumenda sunt eaque laborum non nemo quae consequuntur ipsum asperiores earum in dolores cumque ea. Vel, modi, culpa temporibus doloribus sed ut omnis qui quia architecto quae. Ullam, totam, debitis, rem repellat expedita facere veritatis dolorum in error ex eum nesciunt eos placeat consequuntur aliquid!</p>
+<div class="large-12">
+	<div class="container">
+		<div class="center">
+			<h1>Help</h1>
+			<h2>FAQ</h2>
+		</div>
+			<br>
+			 <l>
+			 	<li>
+			 		<h3>How do I edit my stats?</h3>
+					<p> You can edit your statistics/results by clicking on them right in the results table. An input box will appear where you can fill in a new value. Just click elsewhere on the screen or hit enter to submit the new value!</p>	
+			 	</li>
+			 	<li>
+			 		<h3>Where can I update my account?</h3> 
+			 		<p>
+			 			You can access and update your account settings by pressing the link "settings" in the dropdown menu "Account" in the top bar. Or simply click <%= link_to "here :)", edit_user_path(current_user) %>
+			 		</p>
+			 	</li>
+			 	<li>
+			 		<h3>Where can I find my...</h3>
+			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quod odit cum quam doloremque delectus aliquid similique quisquam. Repudiandae, placeat quibusdam alias magni doloribus ut eveniet error nobis porro perferendis.</p>
+			 	</li>
+			 	<li>
+			 		<h3>How can I do....</h3>
+			 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, non suscipit neque accusamus explicabo molestiae ipsum vero qui ipsam unde laudantium iusto praesentium quo facere voluptates in porro sint! Libero, rem, voluptatibus iste dolores cum pariatur fugiat a dolore hic.</p>
+			 	</li>
+			 	<li>
+					<h3>Didn't find your answer here?</h3>
+					<p>Please contact us <%= link_to "here", contact_path %> and we will respond to your question as soon as possible!</p>
+			 	</li>
+			 </ul>	
+			</p>
 
+	</div>
 </div>
