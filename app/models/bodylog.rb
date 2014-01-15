@@ -16,4 +16,7 @@ class Bodylog < ActiveRecord::Base
 			errors[:base] << "You must enter at least one body statistic"
 		end
 	end
+
+	def maintenace
+	end
 end

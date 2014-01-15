@@ -14,7 +14,7 @@ Logbook::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'contact_forms#new', via: 'get'
   match '/workoutlog', to: 'workoutlogs#new', via: 'get'
-  match '/tools', to: 'static_pages#tools', via: 'get'
+  match '/tools', to: 'tools#caloriecalc', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
