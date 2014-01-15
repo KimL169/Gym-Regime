@@ -18,6 +18,8 @@ Tabulous.setup do
       active_when   { in_action('index').of_controller('bodylogs') }
     end
 
+
+
   end
 
   customize do

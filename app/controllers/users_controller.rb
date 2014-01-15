@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.update_attributes(user_params)
-			flash[:success] = "Profile updated"
+			flash[:success] = "Account updated!"
 			redirect_to @user
 		else
 			render 'edit'
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome to the WorkoutBook #{@user.name}!"
-			redirect_to @user
+			redirect_to new_user_profile_path(:user_id => @user)
 		else
 			render 'new'
 		end

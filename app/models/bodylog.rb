@@ -17,6 +17,4 @@ class Bodylog < ActiveRecord::Base
 		end
 	end
 
-	def maintenace
-	end
 end

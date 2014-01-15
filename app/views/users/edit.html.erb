@@ -3,8 +3,8 @@
 
 <br>
 <div class="row">
-	<div class="large-12">
-		<div class="form">
+	<div class="large-12 large-centered columns">
+		<h2>Account information</h2>
 		<%= simple_form_for @user do |f| %>
 			<%= f.input :name %>
 			<%= f.input :email %>
@@ -12,6 +12,9 @@
 			<%= f.input :password_confirmation %>
 			<%= f.button :submit, "Submit changes" %>
 		<% end %>
-		</div>
 	</div>
-</div>
+</div>			
+
+</div>	
+
+	

@@ -4,10 +4,12 @@
 <br>
 
 <div class="form">
+	<div class="large-4 large-centered columns">
 	<%= simple_form_for @bodylog do |l| %>
 		<%= l.input :weight %>
 		<%= l.input :bodyfat %>
 		<%= l.input :kcal %>
 		<%= l.button :submit, 'Enter Log' %>
 	<% end %>
+	</div>
 </div>

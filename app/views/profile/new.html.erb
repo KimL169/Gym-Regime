@@ -1,0 +1,22 @@
+<% provide(:title, 'Create Profile') %>
+
+<div id="myModal" class="reveal-modal tiny" data-reveal>
+  <h2>Please create your Profile</h2>
+  <p class="lead">If you don't want to at this point you can always visit your profile page and do it at a later time :)</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div class="row">
+	<div class="large-4 large-centered columns">
+		<h1>Create Profile</h1>
+		<br>
+		<div class="form">
+		<%= simple_form_for @profile, :url => user_profile_path(@user) do |f| %>
+			<%= f.input :age %>
+			<%= f.input :height %>
+			<%= f.input :gender %>
+      	<%= f.button :submit, "Create my Profile" %>
+		<% end %>
+		</div>
+	</div>
+</div>

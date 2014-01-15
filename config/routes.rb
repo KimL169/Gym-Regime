@@ -1,10 +1,12 @@
 Logbook::Application.routes.draw do 
   resources :contact_forms, only: [:new, :create]
-  resources :users
+  resources :users do
+     resource :profile, :controller => 'profile'
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :bodylogs
-  resources :workoutlogs
   resources :workouts
+ 
   
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
@@ -13,7 +15,6 @@ Logbook::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'contact_forms#new', via: 'get'
-  match '/workoutlog', to: 'workoutlogs#new', via: 'get'
   match '/tools', to: 'tools#caloriecalc', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.

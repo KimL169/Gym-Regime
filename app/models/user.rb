@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
 	has_many :workouts
+	has_one :profile
 	has_many :bodylogs do
 		
 		def today
 			where(:created_at => (Time.now.beginning_of_day..Time.now))
 		end
 	end
+
+	accepts_nested_attributes_for :profile
 
 
 	before_save { self.email = email.downcase }

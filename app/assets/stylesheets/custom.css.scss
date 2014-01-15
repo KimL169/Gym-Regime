@@ -60,7 +60,6 @@ h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
   color: #999;
 }
@@ -94,8 +93,8 @@ p {
 
 footer {
   margin-top: 60px;
-  padding-top:5px;
-  border-top:  1px solid #eaeaea;
+  padding-top:10px;
+  border-top: 1px solid #eaeaea;
   color: #999;
   margin-left:30px;
   margin-right:30px;
@@ -137,9 +136,6 @@ footer ul li {
 /* forms */
 
 .form, .container {
-  width: 40%;
-  min-width: 200px;
-  margin:auto;
   ul {
     list-style-type: none;
   }

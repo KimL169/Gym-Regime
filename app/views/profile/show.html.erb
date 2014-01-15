@@ -1,0 +1,22 @@
+<% provide(:title, @user.name) %>
+
+<div class="row">
+	<div class="large-12 columns">
+		<h1>
+			<%= @user.name %>
+		</h1>
+		<br>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-4">
+	<h2>Personal information</h2>
+	<ul>
+		<li>Age: <%= best_in_place @profile, :age, :path => user_profile_path(@user)%></li>
+		<li>Height: <%= best_in_place @profile, :height, :path => user_profile_path(@user) %></li>
+		<li>Gender: <%= best_in_place @profile, :gender, :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user) %></li>
+	</ul>
+		
+	</div>
+</div>

@@ -35,3 +35,13 @@ Project idea/philosophy
 This is a logbook app for keeping track of workouts and bodycomposition changes. 
 This app will (initially) be more oriented towards strength athletes and bodybuilding/fitness.
 
+
+TODO
+=============
+- Display server validation errors for best_in_place (link: https://github.com/proton/best_in_place)
+- Charts
+- Delete entries
+- Edit date
+- Calculator
+- (nested) Input for exercises and segments
+

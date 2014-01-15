@@ -14,9 +14,9 @@
       <ul class="right">
         <% if signed_in? %>
         <li class="divider"></li>
-        <li><%= link_to "Workout Log", '/workoutlog' %></li>
+        <li><%= link_to "Workout Log", new_workout_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "Body Log", '/bodylogs/new' %></li>
+        <li><%= link_to "Body Log", new_bodylog_path %></li>
         <li class="divider"></li>
         <li><%=  link_to "Tools", '/tools' %></li>
         <li class="divider"></li>
@@ -32,7 +32,7 @@
           <li class="has-dropdown">
             <a href="#">Account</a>
               <ul class="dropdown">
-                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Profile", user_profile_path(current_user) %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
               </ul>

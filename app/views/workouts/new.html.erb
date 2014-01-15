@@ -1,0 +1,13 @@
+<% provide(:title, "Workouts") %>
+
+<h1>Workout Log Entry</h1>
+
+<div class="form">
+	<div class="large-4 large-centered columns">
+	<%= simple_form_for @workout do |w| %>
+		<%= w.input :name %>
+		<%= w.input :comment %>
+		<%= w.button :submit, 'Enter Workout' %>
+	<% end %>
+	</div>
+</div>
