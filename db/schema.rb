@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115143755) do
+ActiveRecord::Schema.define(version: 20140116123520) do
 
   create_table "bodylogs", force: true do |t|
     t.float    "weight"
@@ -39,10 +39,13 @@ ActiveRecord::Schema.define(version: 20140115143755) do
   create_table "profiles", force: true do |t|
     t.integer  "age"
     t.integer  "height"
-    t.string   "gender"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "caltarget"
+    t.float    "weighttarget"
+    t.integer  "activity"
+    t.integer  "gender"
   end
 
   create_table "segments", force: true do |t|

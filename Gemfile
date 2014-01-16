@@ -25,8 +25,10 @@ gem "watu_table_builder", :require => "table_builder"
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec-rails', '2.13.1'
+	gem 'sqlite3'
+	gem 'rspec-rails', '2.13.1'
+	gem "better_errors"
+	gem 'binding_of_caller'
 end
 
 group :assets do

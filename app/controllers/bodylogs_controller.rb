@@ -1,12 +1,14 @@
 class BodylogsController < ApplicationController
-  before_action :signed_in_user
-  respond_to :html, :json
-  
+	include BodylogsHelper
+	before_action :signed_in_user
+	respond_to :html, :json
+
 	def index
 		@user = current_user
 		@bodylogsTable = @user.bodylogs.paginate page: params[:page], order: 'created_at', per_page: 5
 		@bodylogsCal = @user.bodylogs.find(:all)
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today
+		@profile = @user.profile
 	end
 
 	def update
@@ -30,6 +32,13 @@ class BodylogsController < ApplicationController
       	else
         	render :new
 		end
+	end
+
+	def destroy
+		@user = current_user
+		@bodylog = @user.bodylogs.find(params[:id])
+		@bodylog.destroy
+		redirect_to action: 'index'
 	end
 
 	private

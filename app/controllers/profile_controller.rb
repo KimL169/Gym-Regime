@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+	include ProfileHelper
 	before_action :signed_in_user
 	respond_to :html, :json
 
@@ -37,6 +38,6 @@ class ProfileController < ApplicationController
 	private
 
 		def profile_params
-			params.require(:profile).permit(:age, :height, :gender)
+			params.require(:profile).permit(:age, :height, :gender, :activity, :caltarget, :weighttarget)
   		end
 end

@@ -12,6 +12,12 @@ CONTROLLERS
 	- edit
 	- create
 	- update
+- ProfileController
+	- new
+	- show
+	- update
+	- create
+	- destroy
 - SessionsController
 	- new
 	- create
