@@ -1,0 +1,10 @@
+<dd>
+	<a href="#panel<%= exercise.id %>"><%= f.input :name %></a>
+	<div id="panel<%= exercise.id %>" class="content">
+	 	<%= f.fields_for :segments do |builder| %>
+			<%= render 'segment_fields', f: builder %>
+		<% end %>
+		<%= f.link_to_add "Add Set", :segments %>
+		
+	</div>
+</dd>

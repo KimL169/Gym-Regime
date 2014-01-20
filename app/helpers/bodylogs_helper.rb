@@ -25,4 +25,7 @@ module BodylogsHelper
 		maintenance = brm * multiplier
 		return maintenance
 	end
+
+
+
 end

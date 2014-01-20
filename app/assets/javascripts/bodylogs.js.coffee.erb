@@ -1,0 +1,71 @@
+jQuery ->
+  $('.best_in_place').best_in_place()
+
+
+$ ->
+  $("#bodylogs_chart").highcharts
+    chart:
+      zoomType: "xy"
+
+    title:
+      text: "Weight and Caloric intake over time"
+
+    xAxis: [type: 'datetime']
+    yAxis: [ # Primary yAxis
+      labels:
+        format: "{value} Kg"
+        style:
+          color: "#89A54E"
+
+      title:
+        text: "Weight"
+        style:
+          color: "#89A54E"
+    ,
+      # Secondary yAxis
+      title:
+        text: "Calories"
+        style:
+          color: "#4572A7"
+
+      labels:
+        format: "{value} kcal"
+        style:
+          color: "#4572A7"
+
+      opposite: true
+    ]
+    tooltip:
+      shared: true
+
+    legend:
+      layout: "vertical"
+      align: "left"
+      x: 120
+      verticalAlign: "top"
+      y: 100
+      floating: true
+      backgroundColor: "#FFFFFF"
+
+    series: [
+      name: "Calories"
+      color: "#4572A7"
+      type: "column"
+      yAxis: 1
+      pointInterval: <%= 1.day * 1000 %>
+      pointStart: <%= 1.weeks.ago.at_midnight.to_i * 1000 %>
+      data: gon.kcal
+      tooltip:
+        valueSuffix: "Kcal"
+    ,
+      name: "Weight"
+      color: "#89A54E"
+      type: "spline"
+      pointInterval: <%= 1.day * 1000 %>
+      pointStart: <%= 1.weeks.ago.at_midnight.to_i * 1000 %>
+      data: gon.weight
+
+      tooltip:
+        valueSuffix: "Kg"
+    ]
+

@@ -4,10 +4,32 @@
 
 <div class="form">
 	<div class="large-4 large-centered columns">
-	<%= simple_form_for @workout do |w| %>
-		<%= w.input :name %>
-		<%= w.input :comment %>
-		<%= w.button :submit, 'Enter Workout' %>
+	<%= simple_nested_form_for @workout do |f| %>
+		<%= f.input :name %>
+		<%= f.input :comment, as: :text %>
+		<br>
+		<h2>Exercises</h2>
+		<div id="accordion">
+			
+			<%= f.fields_for :exercises do |e| %>
+				<h3><%= e.input :name %></h3>
+				<%= e.link_to_remove "remove" %>
+				<p>
+			 	<%= e.fields_for :segments do |builder| %>
+					<%= render 'segment_fields', e: builder %>
+				<% end %>
+				<%= e.link_to_add "Add Set", :segments %>
+				</p>
+			<% end %>
+		</div>
+		<%= f.link_to_add "Add Exercise", :exercises %>
+
+		<%= f.submit %>
 	<% end %>
+
 	</div>
 </div>
+
+<script>
+$( "#accordion" ).accordion();
+</script>

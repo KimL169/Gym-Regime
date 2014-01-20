@@ -10,16 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jsapi
 //= require jquery
 //= require jquery_ujs
-//= require foundation
-//= require turbolinks
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require foundation-datetimepicker
 //= require jquery.purr
+//= require jquery_nested_form
+//= require foundation
+//= require foundation-datetimepicker
 //= require best_in_place
+//= require highcharts
 //= require_tree .
 
 

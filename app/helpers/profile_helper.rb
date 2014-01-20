@@ -29,7 +29,7 @@ module ProfileHelper
 		user = current_user
 		bodylogs = user.bodylogs.last(7)
 		if bodylogs.count < 7
-			return "Not enough log entries to calculate"
+			return "Not enough consistent log entries to calculate"
 		end
 		profile =  user.profile
 		lastlog = bodylogs.last
@@ -50,4 +50,24 @@ module ProfileHelper
 			return change
 		end
 	end
+
+	def time_estimate
+		user = current_user
+		targetwweight = user.profile.weighttarget
+		lastlog = user.bodylogs.last
+		if lastlog.weight
+			current_weight = lastlog.weight
+			diff = targetwweight - current_weight
+			rate = changerate()
+			if rate.to_f != 0
+				return diff / rate
+			else
+				return "-"
+			end
+		else
+			return "No current weight logged"
+		end
+	end
 end
+
+

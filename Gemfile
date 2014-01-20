@@ -17,12 +17,14 @@ gem 'jquery-validation-rails'
 gem 'figaro'
 gem 'will_paginate-foundation'
 gem 'groupdate'
-gem "chartkick"
 gem 'tabulous'
 gem 'jeditable-rails'
 gem 'foundation-datetimepicker-rails'
 gem "watu_table_builder", :require => "table_builder"
 gem 'best_in_place', github: 'aaronchi/best_in_place'
+gem "nested_form"
+gem "highcharts-rails", "~> 3.0.0"
+gem 'gon'
 
 group :development, :test do
 	gem 'sqlite3'
@@ -44,7 +46,7 @@ gem 'sass-rails', '4.0.1'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
-gem 'turbolinks', '1.1.1'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '1.0.2'
 gem 'factory_girl_rails', '4.2.1'
 

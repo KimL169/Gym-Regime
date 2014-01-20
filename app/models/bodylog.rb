@@ -1,6 +1,6 @@
 class Bodylog < ActiveRecord::Base
 	belongs_to :user
-
+	
 	validate :user_quota, :on => :create
 	validate :inputs
 

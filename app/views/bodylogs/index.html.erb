@@ -6,17 +6,21 @@
 <div class="row">
 	<div class="large-12">
 		<dl class="tabs" data-tab>
-		  <dd class="active"><a href="#panel2-1">Calendar</a></dd>
-		  <dd><a href="#panel2-2">Table view</a></dd>
+		  <dd class="active"><a href="#panel2-1">Chart</a></dd>
+		  <dd><a href="#panel2-2">Table</a></dd>
+		  <dd><a href="#panel2-3">Calendar</a></dd>
 		</dl>
 		<div class="tabs-content">
 		  <div class="content active" id="panel2-1">
-		  		<%= render partial: "bodylogcalendar" %>
+			<%= render partial: "chart" %>
 		  </div>
 		  <div class="content" id="panel2-2">
 		    <p><%= render partial: "bodylogtable" %></p>
 		  </div>
+		  <div class="content" id="panel2-3">
+		    <p>	<%= render partial: "bodylogcalendar" %></p>
 		</div>
 	</div>
 </div>
+
 

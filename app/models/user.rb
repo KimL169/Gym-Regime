@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-	has_many :workouts
-	has_one :profile
-	has_many :bodylogs do
+	has_many :workouts, dependent: :destroy
+	has_one :profile, dependent: :destroy
+	has_many :bodylogs, dependent: :destroy do
 		
 		def today
 			where(:created_at => (Time.now.beginning_of_day..Time.now))

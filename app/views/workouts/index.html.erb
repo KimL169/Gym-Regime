@@ -2,28 +2,19 @@
 
 <h1>Workout index</h1>
 
-<br>
-<div class="row">
-<div class="large-12 columns">
-		<table>
-			<thread>
-				<tr>
-					<th width ="150">Date</th>
-					<th width ="150">Name</th>
-					<th width ="150">Comment</th>
-				</tr>
-			</thread>
-			<tbody>
-				<% @workoutsTable.each do |workout| %>
-				<tr>
-					<td><%= workout.created_at.strftime("%d %b. %Y") %></td>
-					<td><%= best_in_place workout, :name %></td>
-					<td><%= best_in_place workout, :comment %></td>
-				</tr>
-				 <% end %>		
-			</tbody>
-		</table>
-		<%= will_paginate @workoutsTable, renderer: FoundationPagination::Rails %>
-	</div>
-</div>
+<ul>
+ <% for workout in @workouts %>
+ <li><%= workout.name %></li>
+  <li><% for exercise in workout.exercises.all %></li>
+  			<%= exercise.name %>
+  			<%= number_with_precision(exercise.strength, precision:1) %>
+  			<% for segment in exercise.segments.all %>
+  				<%= segment.weight %>x
+  				<%= segment.reps %>
+  			<% end %>
+  		<% end %>
+  <% end %>
+</ul>
+
+
 

@@ -6,9 +6,14 @@ class BodylogsController < ApplicationController
 	def index
 		@user = current_user
 		@bodylogsTable = @user.bodylogs.paginate page: params[:page], order: 'created_at', per_page: 5
-		@bodylogsCal = @user.bodylogs.find(:all)
+		@bodylogsCal = @user.bodylogs.all
+		@bodylogs = @user.bodylogs.all
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today
 		@profile = @user.profile
+		gon.weight = []
+		@bodylogs.each {|e| gon.weight.append(e.weight)}
+		gon.kcal = []
+		@bodylogs.each {|e| gon.kcal.append(e.kcal)}
 	end
 
 	def update

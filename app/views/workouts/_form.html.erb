@@ -1,0 +1,7 @@
+<div class="field">
+	<%= f.input :name %>
+	<%= f.input :comment. as: :text %>
+	<%= f.fields_for :exercises do |builder| %>
+		<%= render 'exercise_fields', f: builder %>
+	<% end %>
+</div>
