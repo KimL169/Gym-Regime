@@ -23,6 +23,8 @@ class ProfileController < ApplicationController
 	def show
 		@user = current_user
 		@profile = @user.profile
+		@bodylog = @user.bodylogs.find(:last)
+		@bodylogs = @user.bodylogs.order('created_at DESC').all
 	end
 
 	def update
@@ -40,4 +42,5 @@ class ProfileController < ApplicationController
 		def profile_params
 			params.require(:profile).permit(:age, :height, :gender, :activity, :caltarget, :weighttarget)
   		end
+
 end

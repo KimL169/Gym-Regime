@@ -18,4 +18,5 @@ module WorkoutsHelper
 			return (weight/ (1.0279 - (0.0278 * reps)))
 		end
 	end
+
 end

@@ -1,11 +1,6 @@
 <br>
-<div class="large-12 column">
+<div class="large-12 columns">
 	<div class="row">
-	<h2 id="month">
-		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y/%m") %>
-		<%= h @date.strftime("%B %Y") %>
-		<%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y/%m") %>
-	</h2>
 		<table>
 			<thread>
 				<tr>
@@ -21,12 +16,20 @@
 				
 				<% @bodylogsTable.each do |bodylog| %>
 				<tr>
-					<td><%= bodylog.created_at.strftime("%d %b. %Y") %></td>
+					<td><%= best_in_place bodylog, :created_at, display_with: lambda { |dt| format_date(dt) } %></td>
 					<td><%= best_in_place bodylog, :weight %></td>
 					<td><%= best_in_place bodylog, :bodyfat %></td>
 					<td><%= best_in_place bodylog, :kcal %></td>
 					<% if bodylog.kcal && bodylog.weight %>
-						<td> <%= bodylog.kcal - harrisbenedict(@profile.gender, @profile.height, @profile.age, bodylog.weight, @profile.activity).to_int %></td>
+						<% expenditure =  harrisbenedict(@profile.gender, @profile.height, @profile.age, bodylog.weight, @profile.activity) %>
+						<%  difference = bodylog.kcal - expenditure[:maintenance].to_int %>
+
+							<% if target_kcal(@profile.caltarget, bodylog.kcal) %>
+								<td style='color:green;'> <%= difference%> kcal</td>
+								<% else %>
+								<td style='color:red;'> <%= difference %> kcal</td>
+							<% end %>
+						
 					<% end %>
 					<td><%= button_to 'Delete', bodylog, method: :delete, confirm: 'Are you sure?'%></td>
 				</tr>

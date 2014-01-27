@@ -5,26 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= full_title(yield(:title)) %></title>
-  <%= include_gon %>
+
 	<%= stylesheet_link_tag "application", media: "all" %>
 
     <%= javascript_include_tag "vendor/modernizr" %>
-      
-
+       
+    <%= include_gon %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
-      <%= render 'layouts/header' %>
 
-      <ul class="tabs" > 
-        <%= tabs %> 
-      </ul>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <nav class="tab-bar">
+          <% if signed_in? %>
+            <section class="left-small">
+              <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+            </section>
+           <% end %>
+          <section class="middle tab-bar-section">
+            <h1 class="title">WORKOUT BOOK</h1>
+          </section>
 
-      <%= render 'shared/notice' %>
+          <section class="right-small">
+        <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
+          </section>
+        </nav>
 
-    <div class="panel">
-      <%= yield %>
+        <% if signed_in? %>
+        <aside class="left-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>Workout Log</label></li>
+            <li><%= link_to "Log Entry", new_workout_path %></li>
+            <li><%= link_to "Results", workouts_path %></li>
+            <li><label>Body Log</label></li>
+            <li><%= link_to "Log Entry", new_bodylog_path %></li>
+            <li><%= link_to "Results", bodylogs_path %></li>
+          </ul>
+        </aside>
+       <% end %>
+
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+          <% if signed_in? %>
+            <li><label>User</label></li>
+            <li><%= link_to "Profile/Settings", user_profile_path(current_user) %></li>
+            <li><label>Account</label></li>
+              <li><%= link_to "Edit Account", edit_user_path(current_user) %></li>
+              <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+              <li><label></label></li>
+              <li><%= link_to "Help", help_path %></li>
+              <li><%= link_to "Contact", contact_path %></li>
+
+
+          <% else %>
+          <li><%= link_to "Sign in", signin_path %></li>
+          <li><%= link_to "Sign Up", signup_path %></li>
+          <% end %>
+            </ul>
+        </aside>
+
+
+        <section class="main-section">
+          <!-- content goes here -->         
+            <%= render 'shared/notice' %>
+          <%= yield %>
+        </section>
+
+      </div>
     </div>
 
     <%= render 'layouts/footer' %>

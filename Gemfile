@@ -25,6 +25,10 @@ gem 'best_in_place', github: 'aaronchi/best_in_place'
 gem "nested_form"
 gem "highcharts-rails", "~> 3.0.0"
 gem 'gon'
+gem 'rails3-jquery-autocomplete'
+gem 'nifty-generators'
+gem "select2-rails"
+gem 'highstock-rails'
 
 group :development, :test do
 	gem 'sqlite3'

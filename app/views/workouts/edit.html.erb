@@ -10,18 +10,16 @@
 		<br>
 		<h2>Exercises</h2>
 	
-		<%= f.fields_for :exercises, @workout.exercises.build(:user_id => current_user.id) do |builder| %>
+		<%= f.fields_for :exercises do |builder| %>
 			<%= render 'exercise_fields', e: builder %>
 
 		<% end %>
 		<div class="row">
 			<%= f.link_to_add "Add Exercise", :exercises %>
-			<div style="float:right;"><%= f.button :submit %></div>
+			<%= f.submit %>
 		</div>
 
 	<% end %>
 
 	</div>
 </div>
-
-

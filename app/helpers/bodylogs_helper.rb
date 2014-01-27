@@ -26,6 +26,38 @@ module BodylogsHelper
 		return maintenance
 	end
 
+	def get_strength(exercises)
+		strengthlist = []
+		exercises.each do |e|
+			if e.name == 'bench'
+				strengthlist.append(e.strength)
+			end
+		end
+		return strengthlist
+	end
 
+	def format_date(my_date)
+  		my_date.strftime('%m/%d/%Y')
+	end
 
+	def get_days_ago(logs)
+		if logs.any? && logs.count > 6
+			lastlog = logs.first
+			first_entry = lastlog.created_at.to_date
+			now = Date.today
+			days_past =  (now - first_entry)
+			return days_past.days.ago.at_midnight.to_i * 1000
+		else
+			return 1.weeks.ago.at_midnight.to_i * 1000
+		end
+	end
+
+	def target_kcal(calories, targetkcal)
+		if calories > (targetkcal+100) || calories < (targetkcal-100) #100 kcal leeway
+			return false
+		else
+			return true
+		end
+	end
 end
+

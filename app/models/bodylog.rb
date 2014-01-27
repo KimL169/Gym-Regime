@@ -4,6 +4,14 @@ class Bodylog < ActiveRecord::Base
 	validate :user_quota, :on => :create
 	validate :inputs
 
+	before_save :round_input
+
+	def round_input
+		self.weight.round
+		self.kcal.round 
+		self.bodyfat.round
+	end
+
 	def user_quota
 		if user.bodylogs.today.count >= 1
 			errors[:base] << "You have already added a log enty today.
@@ -13,7 +21,7 @@ class Bodylog < ActiveRecord::Base
 
 	def inputs
 		unless weight || kcal || bodyfat
-			errors[:base] << "You must enter at least one body statistic"
+			errors[:base] << "You must enter at least one body statistic."
 		end
 	end
 

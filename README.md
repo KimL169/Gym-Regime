@@ -40,8 +40,8 @@ TODO
 =============
 - Display server validation errors for best_in_place (link: https://github.com/proton/best_in_place)
 - Charts
-- Delete entries
-- Edit date
-- Calculator
-- (nested) Input for exercises and segments
+- edit workouts
+- set rate of weight gain/loss
+-- adjust target calories
+-- show if within reach with green/red
 

@@ -21,7 +21,7 @@ module ProfileHelper
 			multiplier = 1.9
 		end
 		maintenance = brm * multiplier
-		return maintenance
+		return {brm: brm, maintenance: maintenance}
 	end
 
 
@@ -43,7 +43,7 @@ module ProfileHelper
 			ar = Array.new
 			bodylogs.each do |b|
 				m = harrisbenedict(profile.gender, profile.height, profile.age, b.weight, profile.activity)
-				ar.push(b.kcal - m)
+				ar.push(b.kcal - m[:maintenance])
 			end
 			sum = ar.sum
 			change = (sum / 7000)
@@ -51,14 +51,20 @@ module ProfileHelper
 		end
 	end
 
-	def time_estimate
+	def time_estimate(profile)
 		user = current_user
-		targetwweight = user.profile.weighttarget
+		if profile.weighttarget == nil || !Float(changerate)
+			return "You need a target weight and at least 7 consistent log entries."
+		end
 		lastlog = user.bodylogs.last
 		if lastlog.weight
 			current_weight = lastlog.weight
-			diff = targetwweight - current_weight
-			rate = changerate()
+			if profile.weighttarget >= current_weight
+				diff = profile.weighttarget - current_weight
+			else
+				diff = current_weight - profile.weighttarget
+			end
+				rate = changerate()
 			if rate.to_f != 0
 				return diff / rate
 			else
@@ -68,6 +74,18 @@ module ProfileHelper
 			return "No current weight logged"
 		end
 	end
+
+	def get_fat(bodylogs)
+		bodylogs.each do |log|
+			if log.bodyfat != nil
+				if log.bodyfat > 0
+					return log.bodyfat
+				end
+			end
+			return 'No (recent) bodyfat record'
+		end
+	end
+
 end
 
 

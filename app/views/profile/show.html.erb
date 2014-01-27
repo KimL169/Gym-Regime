@@ -12,27 +12,62 @@
 <div class="row">
 
 	<div class="large-4 columns">
-	<h2>Personal information</h2>
+	<h3>Personal information</h3>
 	<ul>
 		<li><b>Age:</b> <%= best_in_place @profile, :age, :path => user_profile_path(@user)%></li>
 		<li><b>Height:</b> <%= best_in_place @profile, :height, :path => user_profile_path(@user) %></li>
 		<li><b>Gender:</b> <%= best_in_place @profile, :gender, :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user) %></li>
 		<li><b>Activity Level:</b>   <%= best_in_place @profile, :activity, :type => :select, :collection => [[1,"1 - Sedentary"],[2, "2 - Light exercise (1-3 days per week)"],[3, "3 - Moderate exercise (3-5 days per week)"],[4, "4 - Heavy exercise (6-7 days per week"], [5, "5 - Very heavy exercise (Twice a day, extra heavy workouts)"]], :path => user_profile_path(@user) %></li>
+	</ul>
+	<h3>Goals</h3>
+	<ul>
 			<li><b>Daily calorie target:</b> <%= best_in_place @profile, :caltarget, :path => user_profile_path(@user) %></li>
 			<li><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, :path => user_profile_path(@user) %></li>
 	</ul>
-		
 	</div>
 
 	<div class="large-4 columns">
-	<h2>Statistics</h2>
+	<h3>Statistics</h3>
+	<h2>Body stats</h2>
 	<ul>
-		<li>
-			<b>Rate of weight change (in kg per week):</b> <%= number_with_precision(changerate, precision:2) %>
-		</li>
+		<% if @bodylogs.any? %>
+
+			<li>
+				<b>Estimated rate of fat loss (in kg per week):</b> <%= number_with_precision(changerate, precision:2) %>
+
+			</li>
+			<li> <b>Weeks until target weight:</b> <%= number_with_precision(time_estimate(@profile), precision:1) %>
+			</li>
+
+			<% expenditure = harrisbenedict(@profile.gender, @profile.height, @profile.age, @bodylog.weight, @profile.activity) %>
+			<li>
+				<b><span data-tooltip class="has-tip" title="Basal Metabolic rate.">BMR:</span></b> <%= number_with_precision(expenditure[:brm], precision: 0) %>
+			</li>
+			<li>
+				<b><span data-tooltip class="has-tip" title="Total calories burned: BRM + daily activity multiplier.">Maintenance caloric need:</span></b>  <%= number_with_precision(expenditure[:maintenance], precision: 0) %>
+			</li>
+
+			<li>
+				<b>Current weight:</b> <%= @bodylog.weight %>
+			</li>
+			<li>
+				<b>Current bodyfat %:</b> <%= get_fat(@bodylogs) %>
+			</li>
+
+		<% else %>
+			<p>You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</p>
+		<% end %>
 	</ul>
-		
-	</div>
+
+	<h2>Strength stats</h2>
+	<ul>
+		<li>Bench:</li>
+		<li>Deadlift:</li>
+		<li>Squat:</li>
+	</ul>
+
+
 
 </div>
+
 

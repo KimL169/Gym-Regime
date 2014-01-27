@@ -1,18 +1,20 @@
 class WorkoutsController < ApplicationController
 	include WorkoutsHelper
-  before_action :signed_in_user
-  respond_to :html, :json
+	  before_action :signed_in_user
+	  respond_to :html, :json
 
 	def new
 		@user = current_user
 		@workout = @user.workouts.new
 		@exercise = @workout.exercises.build
+		@exercise.user_id = current_user.id
 		@segment = @exercise.segments.build
 	end
 
 	def index
 		@user = current_user
 		@workouts = @user.workouts.all
+		@workoutsTable = @user.workouts.paginate page: params[:page], order: 'created_at DESC', per_page: 7
 		#@workoutsTable = @workouts.paginate page: params[:page], order: 'created_at', per_page: 10
 	end
 
@@ -28,6 +30,9 @@ class WorkoutsController < ApplicationController
 		end
 	end
 
+	def edit
+	end
+
 	def update
 		@user = current_user
 		@workout = @user.workouts.find(params[:id])
@@ -36,7 +41,13 @@ class WorkoutsController < ApplicationController
 	end
 
 	def destroy
+		@user = current_user
+		@workout = @user.workouts.find(params[:id])
+		@workout.destroy
+		flash[:success] = "Workout succesfully deleted"
+		redirect_to action: 'index'
 	end
+
 
 	def show
 	end
@@ -44,7 +55,7 @@ class WorkoutsController < ApplicationController
 	private
 
 	def workout_params
-		params.require(:workout).permit(:name, :comment, exercises_attributes: [:name, :comment, segments_attributes: [:weight, :reps, :intensity]])
+		params.require(:workout).permit(:name, :comment, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity]])
 	end
 end
 

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="large-10 large-centered columns" id="accordionworkout">
+    <dl class="accordion" data-accordion>
+        <% @workoutsTable.each do |workout| %>
+      <dd>
+        <a href="#<%= workout.id %>"> <%= workout.created_at.strftime("%d %b. %Y") %> | <%= workout.name %></a>
+        <div id="<%= workout.id %>" class="content">
+          <% workout.exercises.each do |e| %>
+            <%= render 'exercises_table', e: e %>
+            <% end %>
+            
+            <%= button_to "edit", edit_workout_path(workout), action: 'edit' %>
+            <%= button_to "delete", workout_path(workout.id), confirm: "Are you sure?", method: :delete %>
+        </div>
+      </dd>
+        <% end %>
+    </dl>
+
+    <br>
+    <br>
+    <div class="row">
+
+    <br>
+    <%= will_paginate @workoutsTable, renderer: FoundationPagination::Rails %>
+    </div>
+  </div>
+</div>

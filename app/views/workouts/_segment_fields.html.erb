@@ -1,5 +1,14 @@
-Set
-
-<%= e.input :weight %>
-<%= e.input :reps %>
-<%= e.link_to_remove "remove" %>
+<div class="row">
+	<div class="large-3 columns">
+	<%= s.input :weight %>
+	</div>
+	<div class="large-3 columns">
+	<%= s.input :reps %>
+	</div>
+	<div class="large-3 columns">
+	<%= s.input :intensity, collection: 1..10 %>
+	</div>
+	<div class="large-3 columns">
+	<%= s.link_to_remove "remove" %>
+	</div>
+</div>

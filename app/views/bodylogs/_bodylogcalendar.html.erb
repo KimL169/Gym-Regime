@@ -4,7 +4,7 @@
 		<%= h @date.strftime("%B %Y") %>
 		<%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y/%m") %>
 	</h2>
-	<%= calendar_for @bodylogsCal, :year => @date.year, :month => @date.month do |calendar| %>
+	<%= calendar_for @bodylogs, :year => @date.year, :month => @date.month do |calendar| %>
 		<%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
 		    <%= calendar.day(:day_method => :created_at) do |date, bodylogs| %>
 			    <%= date.day %>
@@ -20,3 +20,4 @@
 		<% end %>
 	 <% end %>
 </div>
+

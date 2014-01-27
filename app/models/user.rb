@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :workouts, dependent: :destroy
+	has_many :exercises
 	has_one :profile, dependent: :destroy
 	has_many :bodylogs, dependent: :destroy do
 		

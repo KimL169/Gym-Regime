@@ -16,14 +16,16 @@
 //= require jquery.validate.additional-methods
 //= require jquery.purr
 //= require jquery_nested_form
+//= require best_in_place
 //= require foundation
 //= require foundation-datetimepicker
-//= require best_in_place
-//= require highcharts
+//= require moment
+//= require highstock
 //= require_tree .
 
 
 $(document).foundation();
 
-$('.datepicker').fdatepicker()
-
+jQuery(function($){
+  $.extend($.fn.datepicker.defaults, { format: 'dd-mm-yy' });
+});

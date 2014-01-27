@@ -1,10 +1,22 @@
-<dd>
-	<a href="#panel<%= exercise.id %>"><%= f.input :name %></a>
-	<div id="panel<%= exercise.id %>" class="content">
-	 	<%= f.fields_for :segments do |builder| %>
-			<%= render 'segment_fields', f: builder %>
-		<% end %>
-		<%= f.link_to_add "Add Set", :segments %>
-		
+<fieldset>
+	<div class="row">
+		<div class="large-6 columns">
+			<%= e.input :name %>
+			<%= e.hidden_field :user_id %>
+		</div>
+
+		<div class="large-4 columns">
+			<%= e.link_to_remove "remove exercise" %>
+		</div>
 	</div>
-</dd>
+
+	<%= e.fields_for :segments do |builder| %>
+		<%= render 'segment_fields', s: builder %>
+	<% end %>
+
+	<div class="row">
+		<%= e.link_to_add "Add Set", :segments %>
+	</div>
+
+</fieldset>
+
