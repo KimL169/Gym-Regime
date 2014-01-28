@@ -11,20 +11,13 @@ class WorkoutsController < ApplicationController
 		@segment = @exercise.segments.build
 	end
 
-	def index
-		@user = current_user
-		@workouts = @user.workouts.all
-		@workoutsTable = @user.workouts.paginate page: params[:page], order: 'created_at DESC', per_page: 7
-		#@workoutsTable = @workouts.paginate page: params[:page], order: 'created_at', per_page: 10
-	end
-
 	def create
 		@user = current_user
 		@workout = @user.workouts.new(workout_params)
 		if @workout.save
 			get_max(@workout) #helper method to calculate one_rep_max per exercise
 			flash.now[:success] = "Log entry succesful!"
-			redirect_to action: "index"
+			redirect_to '/results'
       	else
         	render :new
 		end
@@ -44,8 +37,8 @@ class WorkoutsController < ApplicationController
 		@user = current_user
 		@workout = @user.workouts.find(params[:id])
 		@workout.destroy
-		flash[:success] = "Workout succesfully deleted"
-		redirect_to action: 'index'
+		flash[:success] = "Workout: #{@workout.name} - #{@workout.created_at.strftime('%m/%d/%Y')} was deleted."
+		redirect_to '/results'
 	end
 
 
@@ -55,7 +48,7 @@ class WorkoutsController < ApplicationController
 	private
 
 	def workout_params
-		params.require(:workout).permit(:name, :comment, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity]])
+		params.require(:workout).permit(:name, :comment, :rating, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity]])
 	end
 end
 

@@ -36,12 +36,11 @@
         <% if signed_in? %>
         <aside class="left-off-canvas-menu">
           <ul class="off-canvas-list">
-            <li><label>Workout Log</label></li>
-            <li><%= link_to "Log Entry", new_workout_path %></li>
-            <li><%= link_to "Results", workouts_path %></li>
-            <li><label>Body Log</label></li>
-            <li><%= link_to "Log Entry", new_bodylog_path %></li>
-            <li><%= link_to "Results", bodylogs_path %></li>
+            <li><label>Logbook</label></li>
+            <li><%= link_to "Workout entry", new_workout_path %></li>
+            <li><%= link_to "Bodylog entry", new_bodylog_path %></li>
+            <li><label></label></li>
+            <li><%= link_to "Results", '/results' %></li>
           </ul>
         </aside>
        <% end %>

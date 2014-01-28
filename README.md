@@ -43,5 +43,12 @@ TODO
 - edit workouts
 - set rate of weight gain/loss
 -- adjust target calories
--- show if within reach with green/red
+
+- Should strength be indexed?
+
+Ideas:
+- add a total strength chart?
+- workout/bodylog show page (with clickable link in calendar)
+- add strength figures per exercise on profile page.
+
 

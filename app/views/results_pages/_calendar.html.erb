@@ -7,17 +7,30 @@
 	<%= calendar_for @bodylogs, :year => @date.year, :month => @date.month do |calendar| %>
 		<%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
 		    <%= calendar.day(:day_method => :created_at) do |date, bodylogs| %>
-			    <%= date.day %>
+		     <%= date.day %>
 			     <ul>
 				<% for bodylog in bodylogs %>
 			      	<li><b>Calories:</b> <%= best_in_place bodylog, :kcal %></li>
 			      	<li><b>Weight:</b> <%= best_in_place bodylog, :weight %></li>
 			      	<% if bodylog.bodyfat %>
 			      		<li><b>bf:</b> <%= best_in_place bodylog, :bodyfat %>%</li>
-			      	<% end %>
-		      	<% end %>
-		      </ul>
-		<% end %>
+			      <% end %>
+			         </ul>
+				<% end %>
+
+				<% workouts = @user.workouts.where("strftime('%m/%d/%Y', created_at) = ?", date.strftime('%m/%d/%Y')) %>
+				<% if workouts != nil %>
+					<ul>
+					<% for workout in workouts %>
+						<li><b>Workout:</b> <%= workout.name %></li>
+						<% if workout.rating != nil %>
+							<li><b>Rating:</b><%= get_rating(workout.rating) %></li>
+						<% end %>
+					<% end %>
+					</ul>		
+				<% end %>
+	      	
+	<% end %>
 	 <% end %>
 </div>
 

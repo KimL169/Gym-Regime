@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
 	def home
 		if signed_in?
-			redirect_to workouts_path
+			redirect_to '/results'
 		end
 	end
 

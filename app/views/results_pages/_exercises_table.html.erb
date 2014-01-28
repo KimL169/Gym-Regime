@@ -6,8 +6,11 @@
 	<% end %>
 	
 	<% if e.strength && e.strength != 0  %>
-		<div style="color:red">PR: <%= number_with_precision(e.strength, precision:1) %></div>
-			
+			<span data-tooltip class="has-tip" title="Personal Record, 1-rep maximum (Only calculated for 10 reps or less due to accuracy)">
+				<div style="color:red;">
+				PR: <%= number_with_precision(e.strength, precision:1) %>
+				</div>
+			</span>
 	<% end %>
 	<br>
 	<% e.segments.each do |s| %>

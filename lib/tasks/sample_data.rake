@@ -6,34 +6,36 @@ namespace :db do
 
     user = User.find(1)
 
-    counter = 0
-    lowerEx = ['squat', 'deadlift', 'RLD', 'calfraises', 'abs']
-    upperEx = ['bench', 'incline press', 'static hold', 'side raises', 'pull up', 'seated row']
-    workoutN = ['upper', 'lower']
-    reps = [8,9,10]
-    intensity = [4,5,6,7,8,9]
-    weight = [50,60,70,80]
+    # counter = 0
+    # lowerEx = ['squat', 'deadlift', 'RLD', 'calfraises', 'abs']
+    # upperEx = ['bench', 'incline press', 'static hold', 'side raises', 'pull up', 'seated row']
+    # workoutN = ['upper', 'lower']
+    # reps = [8,9,10]
+    # intensity = [4,5,6,7,8,9]
+    # weight = [50,60,70]
+    # daysCounter = 365
 
-    #populate workout logs
-    50.times do
-      counter = counter + 5
-       w =  user.workouts.create!(name: workoutN.sample )
-       if w.name == 'upper'
-          lowerEx.each do |ex|
-            w.exercises.create!(name: ex)
-          end
-      else
-          upperEx.each do |ex|
-            w.exercises.create!(name: ex)
-          end
-      end
+    # #populate workout logs
+    # 365.times do
+    #   counter = counter + 0.1
+    #   daysCounter - 1
+    #    w =  user.workouts.create!(name: workoutN.sample, created_at: daysCounter.days.ago)
+    #    if w.name == 'upper'
+    #       lowerEx.each do |exercise|
+    #         w.exercises.create!(name: exercise, created_at: daysCounter.days.ago)
+    #       end
+    #   else 
+    #       upperEx.each do |exercise|
+    #         w.exercises.create!(name: exercise, created_at: daysCounter.days.ago)
+    #       end
+    #   end
 
-      w.exercises.each do |ex|
-        weight.each do |w|
-          ex.segments.create!(weight:(w+counter), reps: (reps.sample), intensity: (intensity.sample))
-        end
-      end
-    end
+    #   w.exercises.each do |exercise|
+    #     weight.each do |w|
+    #       exercise.segments.create!(weight:(w+counter), reps: (reps.sample), intensity: (intensity.sample), created_at: daysCounter.days.ago)
+    #     end
+    #   end
+    # end
 
 
     counter = 0
@@ -44,7 +46,10 @@ namespace :db do
     daysCounter = 365
 
     def bodylogcreate(user, weight, counter, kcal, bodyfat, daysCounter)
-      user.bodylogs.create!(weight:(weight+counter), kcal: (kcal.sample + (counter*20)), bodyfat: (bodyfat+(counter/2)), created_at: daysCounter.days.ago)
+      user.bodylogs.create!(weight:(weight+counter).round(1), 
+                            kcal: (kcal.sample + (counter*20)).to_i, 
+                            bodyfat: (bodyfat+(counter/2)).round(1), 
+                            created_at: daysCounter.days.ago)
     end
 
     #populate bodylogs

@@ -2,11 +2,21 @@
 
 <h1>Workout Log Entry</h1>
 
+<br>
 <div class="form">
 	<div class="large-6 large-centered columns">
 	<%= simple_nested_form_for @workout do |f| %>
+		<div class="row large-9 columns">
 		<%= f.input :name %>
-		<%= f.input :comment, as: :text %>
+		</div>
+		<div class="row">
+			<div class="large-9 columns">
+			<%= f.input :comment, as: :text %>
+			</div>
+			<div class="large-3 columns">
+			<%= f.input :rating, :type => :select, collection: [["Excellent", 1],["Good", 2],["Okay", 3],["Not so good", 4], ["Bad", 5]]%>
+			</div>
+		</div>
 		<br>
 		<h2>Exercises</h2>
 	

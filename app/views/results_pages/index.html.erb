@@ -1,0 +1,31 @@
+<% provide(:title, 'Results') %>
+
+<h1>Results</h1>
+<br>
+
+
+<div class="large-8 large-centered columns">
+	<div class="row">
+		<dl class="tabs" data-tab>
+		  <dd class="active"><a href="#panel2-1">Bodylogs Table</a></dd>
+		  <dd><a href="#panel2-2">Workouts Table</a></dd>
+		  <dd><a href="#panel2-3">Charts</a></dd>
+			<dd><a href="#panel2-4">Calendar</a></dd>
+		</dl>
+	</div>
+	<div class="tabs-content">
+	<div class="content active" id="panel2-1">
+		 <p><%= render partial: "bodylogstable" %></p>
+	</div>
+	<div class="content" id="panel2-2">
+		<p>	<%= render partial: "workoutstable" %></p>
+	</div>
+	<div class="content" id="panel2-3">
+		<%= render partial: "charts" %>
+	</div>
+	<div class="content" id="panel2-4">
+		<p>	<%= render partial: "calendar" %></p>
+	</div>
+
+
+</div>
