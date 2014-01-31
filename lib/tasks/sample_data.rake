@@ -4,7 +4,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-    user = User.find_by(name: "richard")
+    user = User.find_by(1)
 
     counter = 0
     daysCounter = 210
