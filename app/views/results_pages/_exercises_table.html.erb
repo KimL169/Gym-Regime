@@ -2,19 +2,17 @@
 
 <br>
 <% e.segments.each do |s| %>
-<ul>
-	<% if check_pr(s, e) %>
-	<span data-tooltip class="has-tip" title="1-rep max: <b><%= number_with_precision(s.strength, precision: 1)%></b>  (only calculated for 10 reps or less)">
-		<div style="color:red;">
-		 	<li><%= render 'segments_table', s: s %></li>
-		</div>
-	</span>
-	<% else %>
-	<li>
-		<%= render 'segments_table', s: s %>
-	</li>
-	<% end %>
-
-
-</ul>
+	<ul>
+		<% if check_pr(s, e) %>
+			<span data-tooltip class="has-tip" title="1-rep max: <b><%= number_with_precision(s.strength, precision: 1)%></b>  (only calculated for 10 reps or less)">
+				<div style="color:red;">
+				 	<li><%= render 'segments_table', s: s %></li>
+				</div>
+			</span>
+		<% else %>
+			<li>
+				<%= render 'segments_table', s: s %>
+			</li>
+		<% end %>
+	</ul>
 <% end %>

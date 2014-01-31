@@ -7,9 +7,15 @@ class Bodylog < ActiveRecord::Base
 	before_save :round_input
 
 	def round_input
-		self.weight.round
-		self.kcal.round 
-		self.bodyfat.round
+		if self.weight != nil
+			self.weight.round
+		end
+		if self.kcal != nil
+			self.kcal.round 
+		end
+		if self.bodyfat != nil
+			self.bodyfat.round
+		end
 	end
 
 	def user_quota

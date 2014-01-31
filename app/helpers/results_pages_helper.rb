@@ -27,9 +27,10 @@ module ResultsPagesHelper
 
 	def get_strength(exercise)
 		strengthlist = Array.new
-		exercises = current_user.exercises.where('name =  :name',{name: exercise}) do |ex|
+		exercises = current_user.exercises.where('name =  :name', {:name => exercise})
+		exercises.each do |ex|
 			if ex.strength != nil
-				strengthlist.append(ex.strength)
+				strengthlist.append(ex)
 			end
 		end
 		return strengthlist

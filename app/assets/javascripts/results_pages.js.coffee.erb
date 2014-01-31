@@ -12,7 +12,7 @@ $ ->
       width: 800
 
     title:
-      text: "Weight and Caloric intake over time"
+      text: "Weight change and Caloric intake."
 
     yAxis: [ # Primary yAxis
       labels:
@@ -21,7 +21,7 @@ $ ->
           color: "#FF7400"
 
       title:
-        text: "Weight"
+        text: "Bodyweight"
         style:
           color: "#FF7400"
       offset: 45
@@ -51,7 +51,7 @@ $ ->
       tooltip:
         valueSuffix: "Kcal"
     ,
-      name: "Weight"
+      name: "Bodyweight"
       color: "#FF7400"
       type: "spline"
       yAxis: 0
@@ -69,10 +69,21 @@ $ ->
     if series.visible
       series.hide()
       $button.html "Show kcal"
+      chart.yAxis[1].update
+        labels:
+          enabled: false
+
+        title:
+          text: null
     else
-      series.setData(gon.kcal)
       series.show()
       $button.html "Hide kcal"
+      chart.yAxis[1].update
+        labels:
+          enabled: true
+
+        title:
+          text: 'Calories'
 
 $ ->
   chart = $("#bodylogs_chart").highcharts()
@@ -82,9 +93,21 @@ $ ->
     if series.visible
       series.hide()
       $button.html "Show weight"
+      chart.yAxis[0].update
+        labels:
+          enabled: false
+
+        title:
+          text: null
     else
       series.show()
       $button.html "Hide weight"
+      chart.yAxis[0].update
+        labels:
+          enabled: true
+
+        title:
+          text: 'Bodyweight'
 
 
 
@@ -97,18 +120,18 @@ $ ->
       width: 800
 
     title:
-      text: "Max strength"
+      text: "One-rep max strength #{gon.exercise_name}"
 
     xAxis: [type: 'datetime']
     yAxis: [ # Primary yAxis
       labels:
-        format: "{value} Kg"
+        format: "{value}"
         style:
           color: "#FF7400"
 
 
       title:
-        text: "Weight"
+        text: "Weight (kg)"
         style:
           color: "#FF7400"
 
@@ -116,12 +139,12 @@ $ ->
     ,
       # Secondary yAxis
       title:
-        text: "Calories"
+        text: "Bodyweight (kg)"
         style:
           color: "#403F40"
 
       labels:
-        format: "{value} kcal"
+        format: "{value}"
         style:
           color: "#403F40"
       offset: 45
@@ -162,8 +185,14 @@ $ ->
   $("#hidekcal_strength").click ->
     chart = $("#workouts_chart").highcharts()
     chart.series[0].setData(gon.weight)
+    chart.yAxis[1].update
+        title:
+          text: 'Bodyweight (kg)'
 
 $ ->
   $("#hideweight_strength").click ->
     chart = $("#workouts_chart").highcharts()
     chart.series[0].setData(gon.kcal)
+    chart.yAxis[1].update
+        title:
+          text: 'Calories (kcal)'
