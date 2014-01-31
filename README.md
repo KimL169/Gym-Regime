@@ -1,18 +1,18 @@
 How to set up
 ===========
 
-# clone repo
+- clone repo
 git clone https://github.com/KimL169/WorkoutBook
 
-# make sure all gems are there
+- make sure all gems are there
 cd logbook
 bundle
 
-# initialize and seed database
+- initialize and seed database
 rake db:setup
 rake db:populate
 
-# start server
+- start server
 rails s
 
 
