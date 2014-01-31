@@ -30,10 +30,15 @@
 	<h3>Statistics</h3>
 	<h2>Body stats</h2>
 	<ul>
-		<% if @bodylogs.any? %>
+		<% if @bodylogs.any? && @profile.age != nil && @profile.height != nil && @profile.activity != nil && @profile.gender != nil %>
 
 			<li>
-				<b>Estimated rate of fat loss (in kg per week):</b> <%= number_with_precision(changerate, precision:2) %>
+				<b>Estimated rate of fat loss (in kg per week):</b> <% if changerate != nil %>
+																		<%= number_with_precision(changerate, precision:2) %>
+																	<% else %>
+																		This function is only availible with
+			 															consistent daily logging of results.
+			 														<% end %>
 
 			</li>
 			<li> <b>Weeks until target weight:</b> <%= number_with_precision(time_estimate(@profile), precision:1) %>
@@ -41,10 +46,10 @@
 
 			<% expenditure = harrisbenedict(@profile.gender, @profile.height, @profile.age, @bodylog.weight, @profile.activity) %>
 			<li>
-				<b><span data-tooltip class="has-tip" title="Basal Metabolic rate.">BMR:</span></b> <%= number_with_precision(expenditure[:brm], precision: 0) %>
+				<b><span data-tooltip class="has-tip" title="Basal Metabolic Rate.">BMR:</span></b> <%= number_with_precision(expenditure[:brm], precision: 0) %>
 			</li>
 			<li>
-				<b><span data-tooltip class="has-tip" title="Total calories burned: BRM + daily activity multiplier.">Maintenance caloric need:</span></b>  <%= number_with_precision(expenditure[:maintenance], precision: 0) %>
+				<b><span data-tooltip class="has-tip" title="Total calories burned: BMR + daily activity multiplier.">Maintenance caloric need:</span></b>  <%= number_with_precision(expenditure[:maintenance], precision: 0) %>
 			</li>
 
 			<li>
@@ -57,13 +62,6 @@
 		<% else %>
 			<p>You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</p>
 		<% end %>
-	</ul>
-
-	<h2>Strength stats</h2>
-	<ul>
-		<li>Bench:</li>
-		<li>Deadlift:</li>
-		<li>Squat:</li>
 	</ul>
 
 

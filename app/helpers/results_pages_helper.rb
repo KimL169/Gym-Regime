@@ -25,11 +25,11 @@ module ResultsPagesHelper
 		return {brm: brm, maintenance: maintenance}
 	end
 
-	def get_strength(exercises)
-		strengthlist = []
-		exercises.each do |e|
-			if e.name == 'bench'
-				strengthlist.append(e.strength)
+	def get_strength(exercise)
+		strengthlist = Array.new
+		exercises = current_user.exercises.where('name =  :name',{name: exercise}) do |ex|
+			if ex.strength != nil
+				strengthlist.append(ex.strength)
 			end
 		end
 		return strengthlist
@@ -63,4 +63,19 @@ module ResultsPagesHelper
 		array = ["excellent", "good", "okay", "not so good", "bad"]
 		return array[rating-1]
 	end
+
+	#remove duplicate exercise names from list.
+	def get_exercise_list(exercises)
+		exerciseList = Array.new
+		exercises.each do |e|
+			unless exerciseList.include? e.name
+				exerciseList.append(e.name)
+			end
+		end
+		return exerciseList
+	end
+
 end
+
+
+

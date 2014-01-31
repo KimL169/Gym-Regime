@@ -26,15 +26,6 @@ module BodylogsHelper
 		return maintenance
 	end
 
-	def get_strength(exercises)
-		strengthlist = []
-		exercises.each do |e|
-			if e.name == 'bench'
-				strengthlist.append(e.strength)
-			end
-		end
-		return strengthlist
-	end
 
 	def format_date(my_date)
   		my_date.strftime('%m/%d/%Y')

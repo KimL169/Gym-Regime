@@ -37,8 +37,8 @@ module ProfileHelper
 		days_diff = (lastlog.created_at - d).to_i
 
 		if days_diff > 8
-			return "This function is only availible with
-			 		consistent daily logging of results"
+			return nil
+
 		else
 			ar = Array.new
 			bodylogs.each do |b|
@@ -53,7 +53,7 @@ module ProfileHelper
 
 	def time_estimate(profile)
 		user = current_user
-		if profile.weighttarget == nil || !Float(changerate)
+		if profile.weighttarget == nil || changerate == nil
 			return "You need a target weight and at least 7 consistent log entries."
 		end
 		lastlog = user.bodylogs.last

@@ -7,8 +7,9 @@ Logbook::Application.routes.draw do
   resources :bodylogs
   resources :workouts
  
-  
+ 
   root 'static_pages#home'
+  match '/results', to: 'results_pages#index', via: 'post'
   match '/results', to: 'results_pages#index', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

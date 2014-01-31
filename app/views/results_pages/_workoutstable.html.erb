@@ -10,6 +10,7 @@
             <% end %>
             
             <%= button_to "edit", edit_workout_path(workout), action: 'edit' %>
+  
             <%= button_to "delete", workout_path(workout.id), confirm: "Are you sure?", method: :delete %>
         </div>
       </dd>

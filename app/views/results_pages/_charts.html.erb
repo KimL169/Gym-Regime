@@ -1,9 +1,28 @@
 <br>
 <br>
 
-<div id="bodylogs_chart" style="width 700px; height: 400px"></div>
+<div id="bodylogs_chart"></div>
+
+
+<button id="hidekcal_bodylog">Hide kcal</button>
+<button id="hideweight_bodylog">Hide weight</button>
+
 
 <br>
 <br>
 
 <div id="workouts_chart"></div>
+
+
+<button id="hidekcal_strength">weight</button>
+<button id="hideweight_strength">kcal</button>
+
+	<% exercises = get_exercise_list(@exercises) %>
+<%= form_tag '/results' do %>
+	<%= select_tag(:exercise, options_for_select(exercises.map {|e| [e, e]}), :selected => params[:exercise])%>
+	<%= submit_tag "Get chart" %>
+<% end %>
+
+<script>
+
+</script>

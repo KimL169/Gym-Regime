@@ -11,12 +11,10 @@ class ResultsPagesController < ApplicationController
 		@bodylogs = @user.bodylogs.all
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today  # for the calendar date selector
 		@profile = @user.profile
-		gon.weight = []
-		gon.kcal = []
-		@bodylogs.each {|e| gon.weight.append(e.weight)}
-		@bodylogs.each {|e| gon.kcal.append(e.kcal)}
+		gon.weight = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.weight]}
+		gon.kcal = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.kcal]}
 		@exercises = @user.exercises.all
-		gon.strength = get_strength(@exercises)
+		
 		gon.days_ago = get_days_ago(@bodylogs)
 		gon.created_at = []
 		@bodylogs.each { |e| gon.created_at.append(e.created_at)}
@@ -24,8 +22,8 @@ class ResultsPagesController < ApplicationController
 		#workouts
 		@workouts = @user.workouts.all
 		@workoutsTable = @user.workouts.paginate page: params[:page], order: 'created_at DESC', per_page: 7
-		
+		@selected_exercise = params[:exercise]
+		gon.strength = get_strength(@selected_exercise)
+		#exercise selector for chart
 	end
-
-
 end

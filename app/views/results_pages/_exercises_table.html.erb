@@ -1,22 +1,20 @@
+<h3><%= e.name %></h3>
 
-	<h3><%= e.name %></h3>
-	
-	<% if e.comment %>
-		<%= e.comment %>
+<br>
+<% e.segments.each do |s| %>
+<ul>
+	<% if check_pr(s, e) %>
+	<span data-tooltip class="has-tip" title="1-rep max: <b><%= number_with_precision(s.strength, precision: 1)%></b>  (only calculated for 10 reps or less)">
+		<div style="color:red;">
+		 	<li><%= render 'segments_table', s: s %></li>
+		</div>
+	</span>
+	<% else %>
+	<li>
+		<%= render 'segments_table', s: s %>
+	</li>
 	<% end %>
-	
-	<% if e.strength && e.strength != 0  %>
-			<span data-tooltip class="has-tip" title="Personal Record, 1-rep maximum (Only calculated for 10 reps or less due to accuracy)">
-				<div style="color:red;">
-				PR: <%= number_with_precision(e.strength, precision:1) %>
-				</div>
-			</span>
-	<% end %>
-	<br>
-	<% e.segments.each do |s| %>
-	<ul>
-		<li>
-			<%= render 'segments_table', s: s %>
-		</li>
-	</ul>
-	<% end %>
+
+
+</ul>
+<% end %>

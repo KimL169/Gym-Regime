@@ -46,6 +46,11 @@ TODO
 
 - Should strength be indexed?
 
+
+- when small screen => make tabs be displayed vertically.
+
+- only save exercise if it does not exist!!! (First find exercise, if it exists add segments to *that* exercise. )
+
 Ideas:
 - add a total strength chart?
 - workout/bodylog show page (with clickable link in calendar)

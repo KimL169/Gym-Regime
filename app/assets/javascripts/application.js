@@ -25,7 +25,3 @@
 
 
 $(document).foundation();
-
-jQuery(function($){
-  $.extend($.fn.datepicker.defaults, { format: 'dd-mm-yy' });
-});

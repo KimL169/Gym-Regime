@@ -1,3 +1,2 @@
 
-<%= s.reps %> x <%= s.weight %> intensity: <%= s.intensity %>
-
+<%= s.reps %> x <%= s.weight %> <% if s.intensity != nil %> intensity: <%= s.intensity %> <% end %>

@@ -1,0 +1,169 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+
+
+
+$ ->
+  $("#bodylogs_chart").highcharts "StockChart",
+    chart:
+      zoomType: "xy"
+      width: 800
+
+    title:
+      text: "Weight and Caloric intake over time"
+
+    yAxis: [ # Primary yAxis
+      labels:
+        format: "{value} Kg"
+        style:
+          color: "#FF7400"
+
+      title:
+        text: "Weight"
+        style:
+          color: "#FF7400"
+      offset: 45
+    ,
+      # Secondary yAxis
+      title:
+        text: "Calories"
+        style:
+          color: "#403F40"
+
+      labels:
+        format: "{value} kcal"
+        style:
+          color: "#403F40"
+      offset: 60
+      opposite: true
+    ]
+    tooltip:
+      shared: true
+
+    series: [
+      name: "Calories"
+      color: "#403F40"
+      type: "column"
+      yAxis: 1
+      data: gon.kcal
+      tooltip:
+        valueSuffix: "Kcal"
+    ,
+      name: "Weight"
+      color: "#FF7400"
+      type: "spline"
+      yAxis: 0
+      data: gon.weight
+
+      tooltip:
+        valueSuffix: "Kg"
+    ]
+
+$ ->
+  chart = $("#bodylogs_chart").highcharts()
+  $button = $("#hidekcal_bodylog")
+  $button.click ->
+    series = chart.series[0]
+    if series.visible
+      series.hide()
+      $button.html "Show kcal"
+    else
+      series.setData(gon.kcal)
+      series.show()
+      $button.html "Hide kcal"
+
+$ ->
+  chart = $("#bodylogs_chart").highcharts()
+  $button = $("#hideweight_bodylog")
+  $button.click ->
+    series = chart.series[1]
+    if series.visible
+      series.hide()
+      $button.html "Show weight"
+    else
+      series.show()
+      $button.html "Hide weight"
+
+
+
+$ ->
+  $("#workouts_chart").highcharts "StockChart",
+    rangeSelector:
+      selected: 1
+    chart:
+      zoomType: "xy"
+      width: 800
+
+    title:
+      text: "Max strength"
+
+    xAxis: [type: 'datetime']
+    yAxis: [ # Primary yAxis
+      labels:
+        format: "{value} Kg"
+        style:
+          color: "#FF7400"
+
+
+      title:
+        text: "Weight"
+        style:
+          color: "#FF7400"
+
+      offset: 45
+    ,
+      # Secondary yAxis
+      title:
+        text: "Calories"
+        style:
+          color: "#403F40"
+
+      labels:
+        format: "{value} kcal"
+        style:
+          color: "#403F40"
+      offset: 45
+      opposite: true
+       
+    ]
+    tooltip:
+      shared: true
+
+    legend:
+      layout: "vertical"
+      align: "left"
+      x: 100
+      verticalAlign: "top"
+      y: 70
+      floating: true
+      backgroundColor: "#FFFFFF"
+
+    series: [
+      name: "Body Weight"
+      color: "#403F40"
+      type: "column"
+      yAxis: 1
+      data: gon.weight
+      tooltip:
+        valueSuffix: "kg"
+    ,
+      name: "Weight"
+      color: "#FF7400"
+      type: "spline"
+      data: gon.strength
+      tooltip:
+        valueSuffix: "Kg"
+    ]
+
+
+$ ->
+  $("#hidekcal_strength").click ->
+    chart = $("#workouts_chart").highcharts()
+    chart.series[0].setData(gon.weight)
+
+$ ->
+  $("#hideweight_strength").click ->
+    chart = $("#workouts_chart").highcharts()
+    chart.series[0].setData(gon.kcal)

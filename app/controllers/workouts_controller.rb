@@ -13,11 +13,17 @@ class WorkoutsController < ApplicationController
 
 	def create
 		@user = current_user
-		@workout = @user.workouts.new(workout_params)
+		@workout = @user.workouts.build(workout_params)
 		if @workout.save
-			get_max(@workout) #helper method to calculate one_rep_max per exercise
-			flash.now[:success] = "Log entry succesful!"
-			redirect_to '/results'
+			@workout.exercises.each do |e| 
+			e.segments.each do |s|
+				s.workout_id = @workout.id
+			end
+		end
+		@workout.save
+		get_max(@workout) #helper method to calculate one_rep_max per exercise
+		flash.now[:success] = "Log entry succesful!"
+		redirect_to '/results'
       	else
         	render :new
 		end
@@ -48,7 +54,7 @@ class WorkoutsController < ApplicationController
 	private
 
 	def workout_params
-		params.require(:workout).permit(:name, :comment, :rating, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity]])
+		params.require(:workout).permit(:name, :comment, :rating, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity, :workout_id]])
 	end
 end
 
