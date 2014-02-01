@@ -1,3 +1,21 @@
+How to set up
+===========
+
+- clone repo
+git clone https://github.com/KimL169/WorkoutBook
+
+- make sure all gems are there
+cd logbook
+bundle
+
+- initialize and seed database
+rake db:setup
+rake db:populate
+
+- start server
+rails s
+
+
 WorkoutBook
 ===========
 
@@ -34,26 +52,5 @@ Project idea/philosophy
 ==========
 This is a logbook app for keeping track of workouts and bodycomposition changes. 
 This app will (initially) be more oriented towards strength athletes and bodybuilding/fitness.
-
-
-TODO
-=============
-- Display server validation errors for best_in_place (link: https://github.com/proton/best_in_place)
-- Charts
-- edit workouts
-- set rate of weight gain/loss
--- adjust target calories
-
-- Should strength be indexed?
-
-
-- when small screen => make tabs be displayed vertically.
-
-- only save exercise if it does not exist!!! (First find exercise, if it exists add segments to *that* exercise. )
-
-Ideas:
-- add a total strength chart?
-- workout/bodylog show page (with clickable link in calendar)
-- add strength figures per exercise on profile page.
 
 
