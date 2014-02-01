@@ -17,7 +17,7 @@ namespace :db do
       reps = [8,9,10]
       intensity = [4,5,6,7,8,9]
       weight = [50,60,70]
-      rate = [0.9, 0.8, 0.95,1.1, 1.2]
+      rate = [0.99, 0.98, 0.97,1.05, 1.04]
 
        w =  user.workouts.create(name: workoutN.sample, created_at: daysCounter.days.ago)
        if w.name == 'upper'
@@ -47,17 +47,17 @@ namespace :db do
       workoutscreate(user, counter, daysCounter)
     end
     30.times do
-      counter = counter - 0.03
+      counter = counter - 0.05
       daysCounter = daysCounter - 1
       workoutscreate(user, counter, daysCounter)
     end
     60.times do
-      counter = counter + 0.8
+      counter = counter + 0.12
       daysCounter = daysCounter - 1
       workoutscreate(user, counter, daysCounter)
     end
     30.times do
-      counter = counter - 0.04
+      counter = counter - 0.05
       daysCounter = daysCounter - 1
       workoutscreate(user, counter, daysCounter)
     end

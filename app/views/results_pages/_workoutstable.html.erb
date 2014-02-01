@@ -9,9 +9,16 @@
             <%= render 'exercises_table', e: e %>
             <% end %>
             
-            <%= button_to "edit", edit_workout_path(workout), action: 'edit' %>
+<ul class="button-group">
+  <li>
+     <%= button_to "edit", workout_path(workout), action: 'edit', class: 'tiny button secondary' %>  </li>
+  <li>
+    <%= button_to "delete", workout_path(workout.id), confirm: "Are you sure?", method: :delete, class: 'tiny button alert' %>
+  </li>
+</ul>
+           
   
-            <%= button_to "delete", workout_path(workout.id), confirm: "Are you sure?", method: :delete %>
+            
         </div>
       </dd>
         <% end %>
