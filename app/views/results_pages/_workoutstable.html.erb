@@ -1,5 +1,13 @@
+<br>
 <div class="row">
   <div>
+    <% if @workoutsTable.empty? %>
+    <div class="panel">
+     <p> You must first <%= link_to "enter a workout log", new_workout_path %> in order to see the
+             the workout results table.</p>      
+    </div>
+   
+    <% end %>
     <dl class="accordion" data-accordion>
         <% @workoutsTable.each do |workout| %>
       <dd>
@@ -11,7 +19,7 @@
             
 <ul class="button-group">
   <li>
-     <%= button_to "edit", workout_path(workout), action: 'edit', class: 'tiny button secondary' %>  </li>
+     <%= link_to "edit", edit_workout_path(workout), class: 'tiny button secondary' %>  </li>
   <li>
     <%= button_to "delete", workout_path(workout.id), confirm: "Are you sure?", method: :delete, class: 'tiny button alert' %>
   </li>

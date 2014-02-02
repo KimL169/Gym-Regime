@@ -1,43 +1,52 @@
 <br>
 <div class="large-12 columns">
 	<div class="row">
-		<table>
-			<thread>
-				<tr>
-					<th width ="150">Date</th>
-					<th width ="100">Weight</th>
-					<th width ="100">Bodyfat %</th>
-					<th width ="100">Calories</th>
-					<th width ="100">Deficit/Surplus</th>
-					<th width ="100"> </th>				
-				</tr>
-			</thread>
-			<tbody>
-				
-				<% @bodylogsTable.each do |bodylog| %>
-				<tr>
-					<td><%= best_in_place bodylog, :created_at, display_with: lambda { |dt| format_date(dt) } %></td>
-					<td><%= best_in_place bodylog, :weight %></td>
-					<td><%= best_in_place bodylog, :bodyfat %></td>
-					<td><%= best_in_place bodylog, :kcal %></td>
-					<% if bodylog.kcal && bodylog.weight && @profile.gender != nil && @profile.height != nil && @profile.activity != nil && @profile.age != nil%>
-						<% expenditure =  harrisbenedict(@profile.gender, @profile.height, @profile.age, bodylog.weight, @profile.activity) %>
-						<%  difference = bodylog.kcal - expenditure[:maintenance].to_int %>
+		<% if @bodylogsTable.empty? %>
+			<div class="panel">
+				<p> You must first <%= link_to "enter a body log", new_bodylog_path %> in order to see the
+				     the bodylog results table. </p>  
+		    </div>
+		<% else %>
+		
+			<table>
+				<thread>
+					<tr>
+						<th width ="150">Date</th>
+						<th width ="100">Weight</th>
+						<th width ="100">Bodyfat %</th>
+						<th width ="100">Calories</th>
+						<th width ="100">Deficit/Surplus</th>
+						<th width ="100"> </th>				
+					</tr>
+				</thread>
+				<tbody>
+					
+					<% @bodylogsTable.each do |bodylog| %>
+					<tr>
+						<td><%= best_in_place bodylog, :created_at, display_with: lambda { |dt| format_date(dt) } %></td>
+						<td><%= best_in_place bodylog, :weight %></td>
+						<td><%= best_in_place bodylog, :bodyfat %></td>
+						<td><%= best_in_place bodylog, :kcal %></td>
+						<% if bodylog.kcal && bodylog.weight && @profile.gender != nil && @profile.height != nil && @profile.activity != nil && @profile.age != nil%>
+							<% expenditure =  harrisbenedict(@profile.gender, @profile.height, @profile.age, bodylog.weight, @profile.activity) %>
+							<%  difference = bodylog.kcal - expenditure[:maintenance].to_int %>
 
-							<% if target_kcal(@profile.caltarget, bodylog.kcal) %>
-								<td style='color:green;'> <%= difference%> kcal</td>
-								<% else %>
-								<td style='color:red;'> <%= difference %> kcal</td>
-							<% end %>
-					<% else %>
-					<td><span data-tooltip class="has-tip" title="To view this please fill in your profile data in your user profile page (click the '-' next to the profile item)"> - </span></td>
+								<% if target_kcal(@profile.caltarget, bodylog.kcal) %>
+									<td style='color:green;'> <%= difference%> kcal</td>
+									<% else %>
+									<td style='color:red;'> <%= difference %> kcal</td>
+								<% end %>
+						<% else %>
+						<td><span data-tooltip class="has-tip" title="To view this please fill in your profile data in your user profile page (click the '-' next to the profile item)"> - </span></td>
 
-					<% end %>
-					<td><%= button_to 'Delete', bodylog, method: :delete, confirm: 'Are you sure?'%></td>
-				</tr>
-				 <% end %>		
-			</tbody>
-		</table>
+						<% end %>
+						<td><%= button_to 'Delete', bodylog, method: :delete, confirm: 'Are you sure?'%></td>
+					</tr>
+					 <% end %>		
+				</tbody>
+			</table>
+
+		<% end %>
 	</div>
 </div>
 

@@ -6,7 +6,10 @@
 <div class="form">
 	<div class="large-6 large-centered columns">
 	<%= simple_nested_form_for @workout do |f| %>
+
+
 		<div class="row large-9 columns">
+		<%= f.input :created_at, as: :date, :input_html => {:maxlength =>2,:style=> 'width: 90px'}, label: "Date" %> 
 		<%= f.input :name %>
 		</div>
 		<div class="row">

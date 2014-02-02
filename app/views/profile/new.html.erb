@@ -6,9 +6,10 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
+
 <div class="row">
-	<div class="large-4 large-centered columns">
-		<h1>Create Profile</h1>
+  <div class="large-8 large-push-4 columns">
+  	<h1>Create Profile</h1>
 		<br>
 		<div class="form">
 		<%= simple_form_for @profile, :url => user_profile_path(@user) do |f| %>
@@ -16,10 +17,26 @@
 			<%= f.input :height, hint: 'We need to know your age, height and activity level to be able to calculate your caloric requirements'  %>
 			<%= f.input :gender, collection: [["male", 1],["female", 2]], hint: 'We need to know your age, height and activity level to be able to calculate your caloric requirements'  %>
 			<%= f.input :activity, collection: [["1: Little to no exercise", 1],["2: Light exercise (1-3 days per week)", 2],["3: Moderate exercise (3-5 days per week)", 3],["4: Heavy exercise (6-7 days per week", 4], ["5: Very heavy exercise (Twice a day, extra heavy workouts", 5]] %>
-			<%= f.input :caltarget, label: 'Calorie target', hint: 'If applicable' %>
+			<%= f.input :changerate, collection: [["+1.00 kg a week", 5], ["+0.75kg a week", 4], ["+0.5 kg a week", 3], ["+0.25 kg a week", 2],["+0.125 kg a week", 1], ["Maintain weight", 0], ["-0.125 kg a week", -1], ["-0.25 kg a week", -2], ["-0.5 kg a week", -3], ["-0.75 kg a week", -4],["-1.00 kg a week", -5]] %>
+			<%= f.input :caltarget, label: 'Calorie target', hint: 'If applicable', inside_label: "Leave blank if you want to use changerate" %>
 			<%= f.input :weighttarget, label: 'Target weight', hint: 'If applicable' %>
       	<%= f.button :submit, "Create my Profile" %>
 		<% end %>
 		</div>
 	</div>
+
+  <div class="large-4 large-pull-8 columns">
+  	<div class="panel" style="margin-top:50px;">
+			<h2> Information</h2>
+			<br>
+
+			<p>We use your profile information in order to calculate your caloric requirements and strength level. In order for our in-built BMR and caloric need calculator to work, we need to know you age, height, gender, activity level and current weight. Your maintenance caloric need will be calculated based off of your last weight input into the bodylogs tracker. None of your information will be shared with 3rd parties.</p> 
+			
+			<p>If you want we will determine your daily calorie target according to our calculcator and your chosen changerate. Just leave the calorie target field blank, fill in a desired changerate and we'll calculate your calorie target once you have entered your first bodylog.</p> 
+
+			<p>Don't worry you can change or fill in all of your profile settings later in your Profile page!</p>
+		</div>
+	</div>
 </div>
+
+

@@ -30,13 +30,19 @@ class WorkoutsController < ApplicationController
 	end
 
 	def edit
+		@user = current_user
+		@workout = @user.workouts.find(params[:id])
 	end
 
 	def update
 		@user = current_user
 		@workout = @user.workouts.find(params[:id])
-		@workout.update_columns(workout_params)
-		respond_with @workout
+		if @workout.update_attributes(workout_params)
+			flash[:success] = "Workout updated!"
+			redirect_to '/results'
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
@@ -53,9 +59,9 @@ class WorkoutsController < ApplicationController
 	
 	private
 
-	def workout_params
-		params.require(:workout).permit(:name, :comment, :rating, exercises_attributes: [:name, :comment, :user_id, segments_attributes: [:weight, :reps, :intensity, :workout_id]])
-	end
+		def workout_params
+			params.require(:workout).permit(:name, :comment, :rating, :created_at, exercises_attributes: [:id, :name, :comment, :user_id, segments_attributes: [:id, :weight, :reps, :intensity, :workout_id]])
+		end
 end
 
 

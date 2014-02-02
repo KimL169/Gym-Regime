@@ -5,6 +5,8 @@
 <div class="form">
 	<div class="large-6 large-centered columns">
 	<%= simple_nested_form_for @workout do |f| %>
+
+		<%= f.input :created_at, as: :date, :input_html => {:maxlength =>2,:style=> 'width: 100px'}, label: "Date" %>
 		<%= f.input :name %>
 		<%= f.input :comment, as: :text %>
 		<br>
@@ -16,10 +18,12 @@
 		<% end %>
 		<div class="row">
 			<%= f.link_to_add "Add Exercise", :exercises %>
-			<%= f.submit %>
+			<div style="float:right;"><%= f.button :submit %></div>
 		</div>
 
 	<% end %>
 
 	</div>
 </div>
+
+
