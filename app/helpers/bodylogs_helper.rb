@@ -43,12 +43,6 @@ module BodylogsHelper
 		end
 	end
 
-	def target_kcal(calories, targetkcal)
-		if calories > (targetkcal+100) || calories < (targetkcal-100) #100 kcal leeway
-			return false
-		else
-			return true
-		end
-	end
+
 end
 

@@ -66,7 +66,11 @@ module ProfileHelper
 			end
 				rate = changerate()
 			if rate.to_f != 0
-				return diff / rate
+				if (diff / rate) < 0
+					return "You've been moving away from your target weight goal for the past week"
+				else
+					return diff / rate
+				end
 			else
 				return "-"
 			end
@@ -84,6 +88,11 @@ module ProfileHelper
 			end
 			return 'No (recent) bodyfat record'
 		end
+	end
+
+	#check return function
+	def is_number(input)
+ 		input.to_f == input
 	end
 
 end

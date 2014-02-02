@@ -1,45 +1,52 @@
-<br>
-<br>
-
-<div id="bodylogs_chart"></div>
-
-<br>
-<ul class="button-group round">
-	<li>
-		<button class="tiny button secondary" id="hidekcal_bodylog">Hide kcal</button>
-	</li>
-	<li>
-		<button class="tiny button secondary" id="hideweight_bodylog">Hide weight</button>
-	</li>
-</ul>
-
-<br>
-<br>
-
-<div id="workouts_chart"></div>
-
-<br>
-
-<div class="row">
-	<div class="large-4 columns">
-			<ul class="button-group round">
-				<li>
-					<button class="tiny button secondary" id="hidekcal_strength">weight</button>
-				</li>	
-				<li>
-					<button class="tiny button secondary" id="hideweight_strength">kcal</button>
-				</li>
-			</ul>
-	</div>
-	<div class="large-4 columns">
-		<% exercises = get_exercise_list(@exercises) %>
-		<%= form_tag '/results' do %>
-			<%= select_tag(:exercise, options_for_select(exercises.map {|e| [e, e]}), :selected => params[:exercise])%>
+<div class="center">
+	<div class="panel">
+		<br>
+		<br>
+		
+		<div id="bodylogs_chart"></div>
+		
+		<br>
+		<ul class="button-group round">
+			<li>
+				<button class="tiny button secondary" id="hidekcal_bodylog">Hide kcal</button>
+			</li>
+			<li>
+				<button class="tiny button secondary" id="hideweight_bodylog">Hide weight</button>
+			</li>
+		</ul>
 	</div>
 
-	<div class="large-4 columns">
-		<%= submit_tag "Get chart", class: "tiny button alert" %>
-		<% end %>
+	<br>
+	<br>
+
+	<div class="panel">
+		
+		<div id="workouts_chart"></div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="large-4 columns">
+					<ul class="button-group round">
+						<li>
+							<button class="tiny button secondary" id="hidekcal_strength">weight</button>
+						</li>	
+						<li>
+							<button class="tiny button secondary" id="hideweight_strength">kcal</button>
+						</li>
+					</ul>
+			</div>
+			<div class="large-4 columns">
+				<% exercises = get_exercise_list(@exercises) %>
+				<%= form_tag '/results' do %>
+					<%= select_tag(:exercise, options_for_select(exercises.map {|e| [e, e]}), :selected => params[:exercise])%>
+			</div>
+		
+			<div class="large-4 columns">
+				<%= submit_tag "Get chart", class: "tiny button alert" %>
+				<% end %>
+			</div>
+			
+		</div>
 	</div>
-	
 </div>

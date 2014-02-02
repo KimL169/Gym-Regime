@@ -2,17 +2,27 @@
 <div class="row">
   <div>
     <% if @workoutsTable.empty? %>
-    <div class="panel">
-     <p> You must first <%= link_to "enter a workout log", new_workout_path %> in order to see the
-             the workout results table.</p>      
-    </div>
-   
+      <div class="panel">
+       <p> You must first <%= link_to "enter a workout log", new_workout_path %> in order to see the
+            the workout results table.</p>      
+      </div>
+     
     <% end %>
     <dl class="accordion" data-accordion>
         <% @workoutsTable.each do |workout| %>
       <dd>
         <a href="#<%= workout.id %>"> <%= workout.created_at.strftime("%d %b. %Y") %> | <%= workout.name %></a>
         <div id="<%= workout.id %>" class="content">
+
+          
+          <% if workout.comment != nil && !workout.comment.blank?%>
+            <div class="panel">
+              <h2>Comment</h2>
+              <p><%= workout.comment %></p>
+              <p>Rating: <b><%= display_workout_rating(workout.rating) %></b></p>
+            </div>
+          <% end %>
+
           <% workout.exercises.each do |e| %>
             <%= render 'exercises_table', e: e %>
             <% end %>

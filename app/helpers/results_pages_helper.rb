@@ -53,7 +53,9 @@ module ResultsPagesHelper
 	end
 
 	def target_kcal(calories, targetkcal)
-		if calories > (targetkcal+100) || calories < (targetkcal-100) #100 kcal leeway
+		if targetkcal == nil || calories == nil
+			return nil
+		elsif calories > (targetkcal+100) || calories < (targetkcal-100) #100 kcal leeway
 			return false
 		else
 			return true
@@ -74,6 +76,40 @@ module ResultsPagesHelper
 			end
 		end
 		return exerciseList
+	end
+
+
+	def target_weight_reached(weight)
+		weighttarget = current_user.profile.weighttarget 
+		if weighttarget != nil
+			if weight < (weighttarget - 0.10) || weight > (weighttarget + 0.10) # 0.10kg leeway.
+				return false
+			else
+				return true
+			end
+		else
+			return false
+		end
+	end
+
+	def display_workout_rating(rating)
+		array = ["Excellent", "Good", "Okay", "Not so good", "Bad"]
+		if rating == nil
+			return nil
+		else 
+			return array[rating-1]
+		end
+	end
+
+
+	def get_target_calories(profile, weight)
+		if profile.gender != nil && profile.height != nil && profile.age != nil && profile.activity != nil && weight != nil && profile.changerate != nil
+			bmr_maintenance = harrisbenedict(profile.gender, profile.height, profile.age, weight, profile.activity)
+			maintenance = bmr_maintenance[:maintenance]
+			return (maintenance + (1000 * profile.changerate)).round(0)
+		else
+			return nil
+		end
 	end
 
 end

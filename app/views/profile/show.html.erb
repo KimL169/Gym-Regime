@@ -21,9 +21,8 @@
 	</ul>
 	<h3>Goals</h3>
 	<ul>
-		<li>Set desired rate of weight loss/gain to estimate caloric requirement</li>
-		<li><b>Rate of weight gain/loss:</b>  <%= best_in_place @profile, :changerate, :type => :select, :collection => [[5, "+1.00 kg a week"], [4, "+0.75kg a week"], [3, "+0.5 kg a week"], [2, "+0.25 kg a week"],[1, "+0.125 kg a week"], [0, "Maintain weight"], [-1, "-0.125 kg a week"], [-2, "-0.25 kg a week"], [-3, "-0.5 kg a week"], [-4, "-0.75 kg a week"],[-5, "-1.00 kg a week"]], :path => user_profile_path(@user) %></li>
-		<li><b>Daily calorie target:</b> <%= best_in_place @profile, :caltarget, :path => user_profile_path(@user) %></li>
+		<li><b>Desired rate of weight gain/loss:</b>  <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.5, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.5, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1, "-1.00 kg a week"]], :path => user_profile_path(@user) %></li>
+		<li><b>Daily calorie target:</b> <%= get_target_calories(@profile, @bodylog.weight) %></li>
 		<li><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, :path => user_profile_path(@user) %></li>
 	</ul>
 	</div>
@@ -32,22 +31,23 @@
 	<h3>Statistics</h3>
 	<h2>Body stats</h2>
 	
-		<% if @bodylogs.any? && @profile.age != nil && @profile.height != nil && @profile.activity != nil && @profile.gender != nil %>
+		<% if @bodylog.weight != nil && @profile.age != nil && @profile.height != nil && @profile.activity != nil && @profile.gender != nil %>
 			<ul>
 				<li>
 					<b>Estimated rate of fat loss (in kg per week):</b> <% if changerate != nil %>
 																			<%= number_with_precision(changerate, precision:2) %>
 																		<% else %>
-																			This function is only availible with
+																			This function is only available with
 				 															consistent daily logging of results.
 				 														<% end %>
 
 				</li>
 				<li> 
-					<b>Weeks until target weight:</b> <% if time_estimate(@profile) > 0 %>
+					<b>Weeks until target weight:</b> 
+					<% if is_number(time_estimate(@profile)) %>
 						<%= number_with_precision(time_estimate(@profile), precision:1) %>
 					<% else %>
-						<p>You've been moving away from your target weight goal for the past week.</p>
+						<%= time_estimate(@profile) %>
 					<% end %>
 				</li>
 
@@ -69,7 +69,7 @@
 		<% else %>
 			<p>You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</p>
 		<% end %>
-	
+
 
 </div>
 

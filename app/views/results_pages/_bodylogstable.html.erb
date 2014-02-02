@@ -24,14 +24,20 @@
 					<% @bodylogsTable.each do |bodylog| %>
 					<tr>
 						<td><%= best_in_place bodylog, :created_at, display_with: lambda { |dt| format_date(dt) } %></td>
-						<td><%= best_in_place bodylog, :weight %></td>
+						<% if target_weight_reached(bodylog.weight) %>
+							<td><span data-tooltip style="color:green;" class="has-tip" title= "You're at your target weight!"><%= best_in_place bodylog, :weight %></span></td>
+						<% else %>
+							<td><%= best_in_place bodylog, :weight %></td>
+						<% end %>
 						<td><%= best_in_place bodylog, :bodyfat %></td>
 						<td><%= best_in_place bodylog, :kcal %></td>
-						<% if bodylog.kcal && bodylog.weight && @profile.gender != nil && @profile.height != nil && @profile.activity != nil && @profile.age != nil%>
+						<% if bodylog.kcal != nil && bodylog.weight != nil && @profile.gender != nil && @profile.height != nil && @profile.activity != nil && @profile.age != nil%>
 							<% expenditure =  harrisbenedict(@profile.gender, @profile.height, @profile.age, bodylog.weight, @profile.activity) %>
 							<%  difference = bodylog.kcal - expenditure[:maintenance].to_int %>
-
-								<% if target_kcal(@profile.caltarget, bodylog.kcal) %>
+								
+								<% if target_kcal(@profile.caltarget, bodylog.kcal) == nil %>
+									<td> <%= difference%> kcal</td>
+								<% elsif target_kcal(@profile.caltarget, bodylog.kcal) %>
 									<td style='color:green;'> <%= difference%> kcal</td>
 									<% else %>
 									<td style='color:red;'> <%= difference %> kcal</td>
@@ -40,7 +46,7 @@
 						<td><span data-tooltip class="has-tip" title="To view this please fill in your profile data in your user profile page (click the '-' next to the profile item)"> - </span></td>
 
 						<% end %>
-						<td><%= button_to 'Delete', bodylog, method: :delete, confirm: 'Are you sure?'%></td>
+						<td><div class="" style="margin:0;"><%= button_to 'Delete', bodylog, method: :delete, confirm: 'Are you sure?', class:"tiny button alert"%></div></td>
 					</tr>
 					 <% end %>		
 				</tbody>
@@ -50,5 +56,7 @@
 	</div>
 </div>
 
-
 <%= will_paginate @bodylogsTable, renderer: FoundationPagination::Rails %>
+
+
+
