@@ -13,17 +13,18 @@ class ResultsPagesController < ApplicationController
 		@profile = @user.profile
 		gon.weight = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.weight]} #collect db data to pass to Javascript chart
 		gon.kcal = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.kcal]} #collect db data to pass to Javascript chart
-		@exercises = @user.exercises.all
-		
-		gon.days_ago = get_days_ago(@bodylogs)
-		gon.created_at = []
-		@bodylogs.each { |e| gon.created_at.append(e.created_at)}
 
 		#workouts
+		@exercises = get_exercise_list(@user.exercises.all)
 		@workouts = @user.workouts.all
 		@workoutsTable = @user.workouts.paginate page: params[:page], order: 'created_at DESC', per_page: 7
 		@strengthList = get_strength(params[:exercise])
-		gon.exercise_name = params[:exercise] #provide graph with the proper name
+
+		if params[:exercise] != nil 
+			gon.exercise_name = params[:exercise] #provide graph with the proper name
+		else
+			gon.exercise_name = '-'
+		end 
 		gon.strength =  @strengthList.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.strength]}  #collect db data to pass to Javascript chart
 	end
 end

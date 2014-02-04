@@ -71,7 +71,7 @@ module ResultsPagesHelper
 	def get_exercise_list(exercises)
 		exerciseList = Array.new
 		exercises.each do |e|
-			unless exerciseList.include? e.name
+			unless exerciseList.include?(e.name) 
 				exerciseList.append(e.name)
 			end
 		end

@@ -38,6 +38,14 @@ class WorkoutsController < ApplicationController
 		@user = current_user
 		@workout = @user.workouts.find(params[:id])
 		if @workout.update_attributes(workout_params)
+			# update the created_at of all the exercises and segments belonging to the workout.
+			@exercises = @workout.exercises.all
+			@exercises.each do |e|
+				e.update_columns(:created_at => @workout.created_at)
+				e.segments.each do |s|
+					s.update_columns(:created_at => @workout.created_at)
+				end
+			end
 			flash[:success] = "Workout updated!"
 			redirect_to '/results'
 		else
@@ -60,7 +68,9 @@ class WorkoutsController < ApplicationController
 	private
 
 		def workout_params
-			params.require(:workout).permit(:name, :comment, :rating, :created_at, exercises_attributes: [:id, :name, :comment, :user_id, segments_attributes: [:id, :weight, :reps, :intensity, :workout_id]])
+			params.require(:workout).permit(:name, :comment, :rating, :created_at, 
+											exercises_attributes: [:id, :name, :comment, :user_id, :created_at, :updated_at, 
+											segments_attributes: [:id, :weight, :reps, :intensity, :created_at, :updated_at, :workout_id]])
 		end
 end
 

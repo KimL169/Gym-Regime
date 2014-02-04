@@ -37,9 +37,8 @@
 					</ul>
 			</div>
 			<div class="large-4 columns">
-				<% exercises = get_exercise_list(@exercises) %>
 				<%= form_tag '/results' do %>
-					<%= select_tag(:exercise, options_for_select(exercises.map {|e| [e, e]}), :selected => params[:exercise])%>
+					<%= select_tag(:exercise, options_for_select(@exercises.map {|e| [e, e]}), :selected => params[:exercise])%>
 			</div>
 		
 			<div class="large-4 columns">
