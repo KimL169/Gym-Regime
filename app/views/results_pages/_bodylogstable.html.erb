@@ -24,8 +24,13 @@
 					<% @bodylogsTable.each do |bodylog| %>
 					<tr>
 						<td><%= best_in_place bodylog, :created_at, display_with: lambda { |dt| format_date(dt) } %></td>
-						<% if target_weight_reached(bodylog.weight) %>
-							<td><span data-tooltip style="color:green;" class="has-tip" title= "You're at your target weight!"><%= best_in_place bodylog, :weight %></span></td>
+						<% if bodylog.weight != nil %>
+							
+							<% if target_weight_reached(bodylog.weight) %>
+								<td><span data-tooltip style="color:green;" class="has-tip" title= "You're at your target weight!"><%= best_in_place bodylog, :weight %></span></td>
+							<% else %>
+								<td><%= best_in_place bodylog, :weight %></td>
+							<% end %>
 						<% else %>
 							<td><%= best_in_place bodylog, :weight %></td>
 						<% end %>

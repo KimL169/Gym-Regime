@@ -3,14 +3,29 @@
 <h1>Body Log</h1>
 <br>
 
-<div class="form">
-	<div class="large-4 large-centered columns">
-	<%= simple_form_for @bodylog do |l| %>
-		<%= l.input :created_at, as: :date, :input_html => {:maxlength =>2,:style=> 'width: 90px'}, label: "Date" %> 
-		<%= l.input :weight %>
-		<%= l.input :bodyfat %>
-		<%= l.input :kcal %>
-		<%= l.button :submit, 'Enter Log' %>
+
+<div class="row">
+	<% if @bodylogscount < 3 %>
+		<div class="larg-4 large-centered columns">
+			<div class="panel">
+				<h3>Information</h3>
+				<p>
+					If you don't know your caloric intake or weight at
+					this time you can always come back and edit the 
+					results table to fill it in later.
+					(If you for example weigh yourself in the morning and
+					want to fill in your daily calories in the evening).
+				</p>
+			</div>
+		</div>
 	<% end %>
+	<div class="large-4 large-centered columns">
+		<%= simple_form_for @bodylog do |l| %>
+			<%= l.input :created_at, as: :date, :input_html => {:maxlength =>2,:style=> 'width: 90px'}, label: "Date" %> 
+			<%= l.input :weight %>
+			<%= l.input :bodyfat %>
+			<%= l.input :kcal %>
+			<%= l.button :submit, 'Enter Log' %>
+		<% end %>
 	</div>
 </div>

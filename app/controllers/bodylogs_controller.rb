@@ -13,16 +13,18 @@ class BodylogsController < ApplicationController
 	def new
 		@user = current_user
 		@bodylog = @user.bodylogs.new
+		@bodylogscount = @user.bodylogs.count
 	end
 
 	def create
 		@user = current_user
 		@bodylog = @user.bodylogs.new(bodylog_params)
+		@bodylogscount = @user.bodylogs.count
 		if @bodylog.save
 			flash.now[:success] = "Log entry succesful!"
 			redirect_to '/results'
       	else
-      		flash[:success] = "You can only save one bodylog a day.
+      		flash.now[:success] = "You can only save one bodylog a day.
       						Please edit your existing bodylog or adjust the date."
         	render :new
 		end
@@ -32,7 +34,7 @@ class BodylogsController < ApplicationController
 		@user = current_user
 		@bodylog = @user.bodylogs.find(params[:id])
 		@bodylog.destroy
-		flash[:success] = "Log entry date: #{@bodylog.created_at.strftime('%m/%d/%Y')} deleted "
+		flash.now[:success] = "Log entry date: #{@bodylog.created_at.strftime('%m/%d/%Y')} deleted "
 		redirect_to '/results'
 	end
 
