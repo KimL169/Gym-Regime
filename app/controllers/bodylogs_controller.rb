@@ -22,6 +22,8 @@ class BodylogsController < ApplicationController
 			flash.now[:success] = "Log entry succesful!"
 			redirect_to '/results'
       	else
+      		flash[:success] = "You can only save one bodylog a day.
+      						Please edit your existing bodylog or adjust the date."
         	render :new
 		end
 	end

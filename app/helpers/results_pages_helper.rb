@@ -105,8 +105,13 @@ module ResultsPagesHelper
 	def get_target_calories(profile, weight)
 		if profile.gender != nil && profile.height != nil && profile.age != nil && profile.activity != nil && weight != nil && profile.changerate != nil
 			bmr_maintenance = harrisbenedict(profile.gender, profile.height, profile.age, weight, profile.activity)
-			maintenance = bmr_maintenance[:maintenance]
-			return (maintenance + (1000 * profile.changerate)).round(0)
+
+			new_target_calories = (bmr_maintenance[:maintenance] + (1000 * profile.changerate)).round(0)
+
+			if new_target_calories != profile.caltarget
+				profile.update_attributes(caltarget: new_target_calories)
+			end
+			return new_target_calories
 		else
 			return nil
 		end

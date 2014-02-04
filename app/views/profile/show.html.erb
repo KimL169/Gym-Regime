@@ -9,21 +9,29 @@
 	</div>
 </div>
 
+<div class="large-8 large-centered columns panel callout radius">
+		<h3>Important Note</h3>
+		<p>
+			This is a beta release, at this time we have not yet implemented support for imperial units of measurement (lbs, feet, inches).
+			Our calculators expect and require metric measurements (kg, meters) to work properly. We're sorry for the inconvenience and will implement support for imperial units of measurment as soon as possible.
+		</p>
+	</div>
+
 <div class="row">
 
 	<div class="large-4 columns">
 	<h3>Personal information</h3>
 	<ul>
-		<li><b>Age:</b> <%= best_in_place @profile, :age, :path => user_profile_path(@user)%></li>
-		<li><b>Height:</b> <%= best_in_place @profile, :height, :path => user_profile_path(@user) %></li>
-		<li><b>Gender:</b> <%= best_in_place @profile, :gender, :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user) %></li>
-		<li><b>Activity Level:</b>   <%= best_in_place @profile, :activity, :type => :select, :collection => [[1, "1 - Sedentary"],[2, "2 - Light exercise (1-3 days per week)"],[3, "3 - Moderate exercise (3-5 days per week)"],[4, "4 - Heavy exercise (6-7 days per week"], [5, "5 - Very heavy exercise (Twice a day, extra heavy workouts)"]], :path => user_profile_path(@user) %></li>
+		<li><b>Age:</b> <%= best_in_place @profile, :age, :path => user_profile_path(@user), nil: "click to edit"%></li>
+		<li><b>Height:</b> <%= best_in_place @profile, :height, :path => user_profile_path(@user), nil: "click to edit" %></li>
+		<li><b>Gender:</b> <%= best_in_place @profile, :gender, :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
+		<li><b>Activity Level:</b>   <%= best_in_place @profile, :activity, :type => :select, :collection => [[1, "1 - Sedentary"],[2, "2 - Light exercise (1-3 days per week)"],[3, "3 - Moderate exercise (3-5 days per week)"],[4, "4 - Heavy exercise (6-7 days per week"], [5, "5 - Very heavy exercise (Twice a day, extra heavy workouts)"]], :path => user_profile_path(@user), nil: "click to edit"%></li>
 	</ul>
 	<h3>Goals</h3>
 	<ul>
-		<li><b>Desired rate of weight gain/loss:</b>  <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.5, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.5, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1, "-1.00 kg a week"]], :path => user_profile_path(@user) %></li>
+		<li><b>Desired rate of weight gain/loss:</b> <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.5, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.5, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1, "-1.00 kg a week"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
 		<li><b>Daily calorie target:</b> <%= get_target_calories(@profile, @bodylog.weight) %></li>
-		<li><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, :path => user_profile_path(@user) %></li>
+		<li><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, :path => user_profile_path(@user), nil: "click to edit" %></li>
 	</ul>
 	</div>
 

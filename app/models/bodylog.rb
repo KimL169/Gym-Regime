@@ -1,8 +1,9 @@
 class Bodylog < ActiveRecord::Base
 	belongs_to :user
 	
-	validate :user_quota, :on => :create
 	validate :inputs
+	validates_uniqueness_of :user_id, :scope => [:user_id, :created_at]
+
 
 	before_save :round_input
 
@@ -15,13 +16,6 @@ class Bodylog < ActiveRecord::Base
 		end
 		if self.bodyfat != nil
 			self.bodyfat.round
-		end
-	end
-
-	def user_quota
-		if user.bodylogs.today.count >= 1
-			errors[:base] << "You have already added a log enty today.
-							Please edit the existing entry"
 		end
 	end
 

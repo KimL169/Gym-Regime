@@ -11,7 +11,7 @@ module WorkoutsHelper
 
 	def one_rep_max(weight, reps)
 		if reps > 10
-			return 0 
+			return nil 
 		else
 			return (weight/ (1.0279 - (0.0278 * reps)))
 		end

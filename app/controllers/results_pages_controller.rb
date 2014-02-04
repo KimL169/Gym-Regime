@@ -1,5 +1,6 @@
 class ResultsPagesController < ApplicationController
 	include ResultsPagesHelper
+	include ApplicationHelper
 	before_action :signed_in_user
 	respond_to :html, :json
 

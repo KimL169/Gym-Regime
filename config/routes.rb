@@ -2,6 +2,7 @@ Logbook::Application.routes.draw do
   resources :contact_forms, only: [:new, :create]
   resources :users do
      resource :profile, :controller => 'profile'
+     resource :setting, :controller => 'setting'
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :bodylogs
