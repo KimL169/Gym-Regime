@@ -8,7 +8,7 @@ class ResultsPagesController < ApplicationController
 		#bodylogs
 		@user = current_user
 		@bodylogsTable = @user.bodylogs.paginate page: params[:page], order: 'created_at DESC', per_page: 7
-		@bodylogs = @user.bodylogs.all
+		@bodylogs = @user.bodylogs.find(:all, order: :created_at)
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today  # for the calendar date selector
 		@profile = @user.profile
 		gon.weight = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.weight]} #collect db data to pass to Javascript chart
