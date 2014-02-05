@@ -59,12 +59,9 @@ module ProfileHelper
 		lastlog = user.bodylogs.last
 		if lastlog.weight
 			current_weight = lastlog.weight
-			if profile.weighttarget >= current_weight
-				diff = profile.weighttarget - current_weight
-			else
-				diff = current_weight - profile.weighttarget
-			end
-				rate = changerate().abs #change to absolute number
+			diff = current_weight - profile.weighttarget
+
+			rate = changerate().abs #change to absolute number
 			if rate.to_f != 0
 				if (diff / rate) < 0
 					return "You've been moving away from your target weight goal for the past week"
