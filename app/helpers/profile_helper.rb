@@ -27,19 +27,11 @@ module ProfileHelper
 
 	def changerate
 		user = current_user
-		bodylogs = user.bodylogs.where(:created_at => 1.week.ago..Date.tomorrow)
-		if bodylogs.count < 7
+		bodylogs = user.bodylogs.where(:created_at => 1.week.ago..Date.tomorrow) #one week of kcal records
+		if bodylogs.count('kcal') != 7 # make sure there are 7 kcal entries for this week.
 			return "Not enough consistent log entries to calculate"
-		end
-		profile =  user.profile
-		lastlog = bodylogs.last
-		d = DateTime.now
-		days_diff = (lastlog.created_at - d).to_i
-
-		if days_diff > 8
-			return "Not enough consistent log entries to calculate"
-
 		else
+			profile = user.profile
 			ar = Array.new
 			bodylogs.each do |b|
 				m = harrisbenedict(profile.gender, profile.height, profile.age, b.weight, profile.activity)
