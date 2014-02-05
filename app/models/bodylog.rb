@@ -25,4 +25,9 @@ class Bodylog < ActiveRecord::Base
 		end
 	end
 
+	#in order to calculate current rate of weekly weight change
+	# def self.past_week
+	# 	scope :past_week, lambda { where(":created_at >= :start_date AND :created_at <= :end_date", {:start_date => 1.week.ago, :end_date => Date.today }) }
+	# end
+
 end

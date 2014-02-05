@@ -27,7 +27,7 @@ module ProfileHelper
 
 	def changerate
 		user = current_user
-		bodylogs = user.bodylogs.last(7)
+		bodylogs = user.bodylogs.where(:created_at => 1.week.ago..Date.tomorrow)
 		if bodylogs.count < 7
 			return "Not enough consistent log entries to calculate"
 		end
@@ -37,7 +37,7 @@ module ProfileHelper
 		days_diff = (lastlog.created_at - d).to_i
 
 		if days_diff > 8
-			return nil
+			return "Not enough consistent log entries to calculate"
 
 		else
 			ar = Array.new
@@ -61,8 +61,9 @@ module ProfileHelper
 			current_weight = lastlog.weight
 			diff = current_weight - profile.weighttarget
 
-			rate = changerate().abs #change to absolute number
+			rate = changerate() 
 			if rate.to_f != 0
+				rate.abs #change to absolute number
 				if (diff / rate) < 0
 					return "You've been moving away from your target weight goal for the past week"
 				else

@@ -44,16 +44,13 @@
 	<h2>Body stats</h2>
 	
 		<% if @bodylog != nil && @profile.age != nil && @profile.height != nil && @profile.activity != nil && @profile.gender != nil %>
-			<% if @bodylog.weight != nil %> 
-				
-			
 			<ul>
 				<li>
 					<b>Estimated rate of fat loss (in kg per week):</b> <% if changerate != nil %>
 																			<%= number_with_precision(changerate, precision:2) %>
 																		<% else %>
 																			This function is only available with
-				 															consistent daily logging of results.
+																			consistent daily logging of results.
 				 														<% end %>
 
 				</li>
@@ -81,11 +78,11 @@
 					<b>Current bodyfat %:</b> <%= get_fat(@bodylogs) %>
 				</li>
 			</ul>
-			<% else %>
+		<% else %>
 
 			<p>You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</p>
-			<% end %>
-		<% end %>
+	<% end %>
+
 
 
 </div>
