@@ -17,7 +17,7 @@
 			<%= f.input :height, hint: 'We need to know your age, height and activity level to be able to calculate your caloric requirements'  %>
 			<%= f.input :gender, collection: [["male", 1],["female", 2]], hint: 'We need to know your age, height and activity level to be able to calculate your caloric requirements'  %>
 			<%= f.input :activity, collection: [["1: Little to no exercise", 1],["2: Light exercise (1-3 days per week)", 2],["3: Moderate exercise (3-5 days per week)", 3],["4: Heavy exercise (6-7 days per week", 4], ["5: Very heavy exercise (Twice a day, extra heavy workouts", 5]] %>
-			<%= f.input :changerate, collection: [["+1.00 kg a week", 1.00], ["+0.75kg a week", 0.75], ["+0.5 kg a week", 0.5], ["+0.25 kg a week", 0.25],["+0.125 kg a week", 0.125], ["Maintain weight", 0], ["-0.125 kg a week", -0.125], ["-0.25 kg a week", -0.25], ["-0.5 kg a week", -0.5], ["-0.75 kg a week", -0.75],["-1.00 kg a week", -1]] %>
+			<%= f.input :changerate, collection: [["+1.00 kg a week", 1.00], ["+0.75kg a week", 0.75], ["+0.5 kg a week", 0.5], ["+0.25 kg a week", 0.25],["+0.125 kg a week", 0.125], ["Maintain weight", 0.00], ["-0.125 kg a week", -0.125], ["-0.25 kg a week", -0.25], ["-0.5 kg a week", -0.5], ["-0.75 kg a week", -0.75],["-1.00 kg a week", -1]] %>
 			<%= f.input :weighttarget, label: 'Target weight', hint: 'If applicable' %>
       	<%= f.button :submit, "Create my Profile" %>
 		<% end %>

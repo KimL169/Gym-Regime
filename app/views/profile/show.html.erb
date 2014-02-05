@@ -29,7 +29,7 @@
 	</ul>
 	<h3>Goals</h3>
 	<ul>
-		<li><b>Desired rate of weight gain/loss:</b> <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.5, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.5, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1, "-1.00 kg a week"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
+		<li><b>Desired rate of weight gain/loss:</b> <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.5, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0.00, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.5, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1, "-1.00 kg a week"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
 		<% if @bodylog != nil && @profile.changerate != nil %>
 			<% if @bodylog.weight != nil %>
 				<li><b>Daily calorie target:</b> <%= get_target_calories(@profile, @bodylog.weight) %></li>
