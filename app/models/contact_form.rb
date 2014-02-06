@@ -4,6 +4,9 @@ class ContactForm < MailForm::Base
 	attribute :email, :validate => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 	attribute :message
 
+	#####
+	# Header for gmail mail delivery from the contact form.
+	#####
 	def headers
 		{
 			:subject => "My Contact Form",

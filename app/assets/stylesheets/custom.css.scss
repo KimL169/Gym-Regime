@@ -23,6 +23,10 @@ body {
   margin-top: 60px;
 }
 
+.row {
+  padding-top:2px;
+}
+
 textarea {
   resize: vertical;
 }
@@ -133,6 +137,7 @@ footer ul li {
 }
 
 /* miscellaneous */
+
 .debug_dump {
   clear: both;
   float: left;

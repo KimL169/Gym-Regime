@@ -2,9 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-
-
+#######
+# The bodylogs chart
+#######
 $ ->
   $("#bodylogs_chart").highcharts "StockChart",
     chart:
@@ -61,6 +61,9 @@ $ ->
         valueSuffix: "Kg"
     ]
 
+#######
+# button to hide/show calories on bodylogs chart.
+#######
 $ ->
   chart = $("#bodylogs_chart").highcharts()
   $button = $("#hidekcal_bodylog")
@@ -85,6 +88,9 @@ $ ->
         title:
           text: 'Calories'
 
+#######
+# button to hide/show weight on bodylogs chart
+#######
 $ ->
   chart = $("#bodylogs_chart").highcharts()
   $button = $("#hideweight_bodylog")
@@ -108,9 +114,9 @@ $ ->
 
         title:
           text: 'Bodyweight'
-
-
-
+#######
+# strength chart.
+#######
 $ ->
   $("#workouts_chart").highcharts "StockChart",
 
@@ -180,8 +186,10 @@ $ ->
       tooltip:
         valueSuffix: "Kg"
     ]
-
-
+    
+#####
+# Button to show weight changes on strength chart.
+#####
 $ ->
   $("#hidekcal_strength").click ->
     chart = $("#workouts_chart").highcharts()
@@ -189,7 +197,9 @@ $ ->
     chart.yAxis[1].update
         title:
           text: 'Bodyweight (kg)'
-
+######
+# Button to show calorie changes on strength chart.
+######
 $ ->
   $("#hideweight_strength").click ->
     chart = $("#workouts_chart").highcharts()

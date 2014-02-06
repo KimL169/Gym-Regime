@@ -1,5 +1,7 @@
 class Profile < ActiveRecord::Base
 	belongs_to :user
 
-	validates :age, length: {maximum: 3}
+	####
+	# Validations not necessary because of already restricted form input.
+	####
 end

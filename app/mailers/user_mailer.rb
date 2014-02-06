@@ -1,4 +1,8 @@
 class UserMailer < ActionMailer::Base
+	#####
+	# Mailer class to send email confirmation message
+	#####
+
   default from: "krelandeweer@gmail.com"
 
   def welcome_email(user)

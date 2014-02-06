@@ -1,3 +1,6 @@
+####
+# Date picker
+####
 $ ->
   $("input.datepicker").each (i) ->
     $(this).datepicker

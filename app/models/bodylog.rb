@@ -4,9 +4,11 @@ class Bodylog < ActiveRecord::Base
 	validate :inputs
 	validates_uniqueness_of :user_id, :scope => [:user_id, :created_at]
 
-
 	before_save :round_input
 
+	######
+	# Round all inputs before save
+	######
 	def round_input
 		if self.weight != nil
 			self.weight.round
@@ -18,16 +20,13 @@ class Bodylog < ActiveRecord::Base
 			self.bodyfat.round
 		end
 	end
-
+	
+	#####
+	# Make sure the user submits at least one bodystat.
+	#####
 	def inputs
 		unless weight || kcal || bodyfat
 			errors[:base] << "You must enter at least one body statistic."
 		end
 	end
-
-	#in order to calculate current rate of weekly weight change
-	# def self.past_week
-	# 	scope :past_week, lambda { where(":created_at >= :start_date AND :created_at <= :end_date", {:start_date => 1.week.ago, :end_date => Date.today }) }
-	# end
-
 end
