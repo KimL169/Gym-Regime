@@ -54,3 +54,20 @@ This is a logbook app for keeping track of workouts and bodycomposition changes.
 This app will (initially) be more oriented towards strength athletes and bodybuilding/fitness.
 
 
+
+Bugs
+=========
+- validations segments
+- update workout, remove an exercise doesn't work.
+
+- problem with validations workout input. If the validations are triggered (ex. you don't enter a workout name) the fields are emptied out.
+
+              <% if bodylog_by_date(workout.created_at) %>
+                <% bodylog = bodylog_by_date(workout.created_at) %>
+                <h2>Bodystats</h2>
+                  <ul>
+                    <% if bodylog.weight %> <li><b>Weight:</b> <%= bodylog.weight %></li> <% end %>
+                    <% if  bodylog.bodyfat %> <li><b>Bodyfat:</b> <%= bodylog.bodyfat %></li><% end %>
+                    <% if bodylog.kcal %> <li><b>Calories:</b> <%= bodylog.kcal %></li><% end %>
+                  </ul>
+              <% end %>

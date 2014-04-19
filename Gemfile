@@ -29,6 +29,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem "select2-rails"
 gem 'highstock-rails'
+gem 'ledermann-rails-settings', :require => 'rails-settings'
 
 group :development, :test do
 	gem 'sqlite3'

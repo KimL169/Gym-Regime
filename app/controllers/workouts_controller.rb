@@ -12,6 +12,7 @@ class WorkoutsController < ApplicationController
 		@exercise = @workout.exercises.build
 		@exercise.user_id = current_user.id
 		@segment = @exercise.segments.build
+		@cardio = @workout.cardios.build
 	end
 
 	########
@@ -22,8 +23,15 @@ class WorkoutsController < ApplicationController
 		@workout = @user.workouts.build(workout_params)
 		if @workout.save
 			@workout.exercises.each do |e| 
-			e.segments.each do |s|
-				s.workout_id = @workout.id #Ad workout id to each segment to link segments to a workout 
+				e.user_id = @user.id
+				e.segments.each do |s|
+					s.workout_id = @workout.id #Add workout id to each segment to link segments to a workout.
+				end
+			@workout.cardios.each do |c|
+				c.user_id = @user.id
+				c.cardio_segments.each do |s|
+					s.workout_id = @workout.id
+				end
 			end
 		end
 		@workout.save
@@ -55,8 +63,10 @@ class WorkoutsController < ApplicationController
 			#make sure the date of the exercises and segments is updated as well to get correct chart information.
 			@exercises.each do |e|  
 				e.update_columns(:created_at => @workout.created_at)
+				e.update_columns(:updated_at => @workout.updated_at)
 				e.segments.each do |s|
 					s.update_columns(:created_at => @workout.created_at)
+					s.update_columns(:updated_at => @workout.updated_at)
 				end
 			end
 			get_max(@workout) # reestablish strength levels.
@@ -85,7 +95,8 @@ class WorkoutsController < ApplicationController
 		def workout_params
 			params.require(:workout).permit(:name, :comment, :rating, :created_at, 
 											exercises_attributes: [:id, :name, :comment, :user_id, :created_at, :updated_at, 
-											segments_attributes: [:id, :weight, :reps, :intensity, :created_at, :updated_at, :workout_id]])
+											segments_attributes: [:id, :weight, :reps, :intensity, :created_at, :updated_at, :workout_id]], 
+											cardios_attributes: [:id, :name, :workout_id, :user_id, :created_at, :updated_at, cardio_segments_attributes: [:id, :cardio_id, :workout_id, :time, :intensity, :created_at, :updated_at]])
 		end
 end
 

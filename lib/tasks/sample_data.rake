@@ -1,10 +1,8 @@
-
-
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-    user = User.find_by(1)
+    user = User.find(1)
 
     counter = 0
     daysCounter = 210
@@ -22,8 +20,8 @@ namespace :db do
        w =  user.workouts.create(name: workoutN.sample, created_at: daysCounter.days.ago)
        if w.name == 'upper'
           lowerEx.each do |exercise|
-            w.exercises.create(name: exercise, created_at: daysCounter.days.ago, strength: (80+(counter*rate.sample)).round(1))
-            user.exercises.create(name: exercise, created_at: daysCounter.days.ago, strength: (80+(counter*rate.sample)).round(1))
+            w.exercises.create(name: exercise, created_at: daysCounter.days.ago, updated_at: daysCounter.days.ago, strength: (80+(counter*rate.sample)).round(1))
+            user.exercises.create(name: exercise, created_at: daysCounter.days.ago, updated_at: daysCounter.days.ago, strength: (80+(counter*rate.sample)).round(1))
           end
       else 
           upperEx.each do |exercise|
@@ -75,7 +73,8 @@ namespace :db do
       user.bodylogs.create!(weight:(weight+counter).round(1), 
                             kcal: (kcal.sample + (counter*20)).to_i, 
                             bodyfat: (bodyfat+(counter/2)).round(1), 
-                            created_at: daysCounter.days.ago)
+                            created_at: daysCounter.days.ago,
+                            updated_at: daysCounter.days.ago)
     end
 
     ###################

@@ -1,13 +1,20 @@
 <br>
-<div class="large-12 columns">
+<div class="small-12 columns">
 	<div class="row">
 		<% if @bodylogsTable.empty? %>
 			<div class="panel">
-				<p> You must first <%= link_to "enter a body log", new_bodylog_path %> in order to see the
+				<p> You must first <%= link_to "enter a body stat", new_bodylog_path %> in order to see the
 				     the bodylog results table. </p>  
 		    </div>
 		<% else %>
-		
+			<div class="row">
+				<div style="align:right;" class="small-4 columns">
+					<%= select_month(Date.today) %>
+				</div> 
+				<div class="small-4 columns">
+					<%= select_year(Date.today) %>
+				</div>
+			</div>
 			<table>
 				<thread>
 					<tr>
@@ -43,7 +50,7 @@
 								<% if target_kcal(@profile.caltarget, bodylog.kcal) == nil %>
 									<td> <%= difference%> kcal</td>
 								<% elsif target_kcal(@profile.caltarget, bodylog.kcal) %>
-									<td style='color:green;'> <%= difference%> kcal</td>
+									<td style='color:green;'> <%= difference %> kcal</td>
 									<% else %>
 									<td style='color:red;'> <%= difference %> kcal</td>
 								<% end %>

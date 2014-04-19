@@ -68,7 +68,8 @@ h1 {
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-weight: normal;
   color: #999;
 }
@@ -277,3 +278,41 @@ img {
   margin-left: 10%;
 }
 
+.pricing-table .bullet-item {
+  background-color: white;
+  padding: 0.9375rem;
+  text-align: left;
+  color: #333333;
+  font-size: 0.875rem;
+  font-weight: normal;
+  border-bottom: dotted 1px #dddddd; }
+
+.pricing-table .title {
+    background-color: #333333;
+    padding: 0.9375rem 1.25rem;
+    text-align: center;
+    color: #eeeeee;
+    font-weight: normal;
+    font-size: 1rem;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+
+
+/* workout table */
+
+.stat_list li {
+  font-size: 0.9em;
+  line-height: 1.7em;
+}
+
+/* profile/dashboard */
+
+.best_in_place_changerate select {
+  width:175px;
+}
+
+.best_in_place_activity select {
+  width:320px;
+}
+.best_in_place_short input, select {
+  width:100px;
+}

@@ -3434,7 +3434,7 @@ ul.pagination {
   .pricing-table .bullet-item {
     background-color: white;
     padding: 0.9375rem;
-    text-align: center;
+    text-align: left;
     color: #333333;
     font-size: 0.875rem;
     font-weight: normal;

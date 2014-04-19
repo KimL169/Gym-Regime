@@ -17,7 +17,7 @@ class ResultsPagesController < ApplicationController
 
 		gon.weight = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.weight]} #collect db data to pass to Javascript chart
 		gon.kcal = @bodylogs.map{ |row| [row.created_at.beginning_of_day.to_i * 1000, row.kcal]} #collect db data to pass to Javascript chart
-
+		
 		#variables/arrays to display workout records. 
 		@exercises = get_exercise_list(@user.exercises.all) #see results_pages_helper for 'get_exercise_list' method
 		@workouts = @user.workouts.all

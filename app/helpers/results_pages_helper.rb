@@ -79,7 +79,7 @@ module ResultsPagesHelper
 	# Calculate target calories according to user prefered changerate.
 	#######
 	def get_target_calories(profile, weight)
-		if profile.gender != nil && profile.height != nil && profile.age != nil && profile.activity != nil && weight != nil && profile.changerate != nil
+		if profile.gender && profile.height && profile.age && profile.activity && weight && profile.changerate
 			bmr_maintenance = harrisbenedict(profile.gender, profile.height, profile.age, weight, profile.activity)
 
 			new_target_calories = (bmr_maintenance[:maintenance] + (1000 * profile.changerate)).round(0) # 1kg fat = 7000 kcal, 1 kg a week change = +-1000 a day.
@@ -91,6 +91,29 @@ module ResultsPagesHelper
 		else
 			return nil
 		end
+	end
+
+	def bodylog_by_date(created_at)
+		date = created_at.to_date
+
+		user = current_user
+		bodylog = user.bodylogs.where(created_at: date.beginning_of_day..date.end_of_day)
+		return bodylog[0]
+	end
+
+	def get_total_reps_sets_weight(workout)
+		exercises = workout.exercises.all
+		totalReps = 0
+		totalSets = 0
+		totalWeight = 0
+		exercises.each do |e|
+			e.segments.each do |s|
+				totalSets += 1
+				totalReps += s.reps
+				totalWeight += (s.weight * s.reps)
+			end
+		end
+		return {totalsets: totalSets, totalreps: totalReps, totalweight: totalWeight}
 	end
 
 end

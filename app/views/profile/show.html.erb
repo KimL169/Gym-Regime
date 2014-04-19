@@ -12,72 +12,89 @@
 
 <div class="row">
 
-	<div class="large-4 columns">
-	<h3>Personal information</h3>
-	<ul>
-		<li><b>Age:</b> <%= best_in_place @profile, :age, :path => user_profile_path(@user), nil: "click to edit"%></li>
-		<li><b>Height:</b> <%= best_in_place @profile, :height, :path => user_profile_path(@user), nil: "click to edit" %></li>
-		<li><b>Gender:</b> <%= best_in_place @profile, :gender, :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
-		<li><b>Activity Level:</b>   <%= best_in_place @profile, :activity, :type => :select, :collection => [[1, "1 - Sedentary"],[2, "2 - Light exercise (1-3 days per week)"],[3, "3 - Moderate exercise (3-5 days per week)"],[4, "4 - Heavy exercise (6-7 days per week"], [5, "5 - Very heavy exercise (Twice a day, extra heavy workouts)"]], :path => user_profile_path(@user), nil: "click to edit"%></li>
-	</ul>
-	<h3>Goals</h3>
-	<ul>
-		<li><b>Desired rate of weight gain/loss:</b> <%= best_in_place @profile, :changerate, :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.50, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0.00, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.50, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1.00, "-1.00 kg a week"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
-		<% if @bodylog != nil && @profile.changerate != nil %>
-			<% if @bodylog.weight != nil %>
-				<li><b>Daily calorie target:</b> <%= get_target_calories(@profile, @bodylog.weight) %></li>
+	<div class="large-6 columns">
+		<ul class="pricing-table">
+			<li class="title">Personal information</li>
+			<li class="description">Adjust your personal information by clicking the items you wish to adjust</li>
+			<li class="bullet-item"><b>Age:</b> <%= best_in_place @profile, :age, classes: "best_in_place_short", :path => user_profile_path(@user), nil: "click to edit"%></li>
+			<li class="bullet-item"><b>Height:</b> <%= best_in_place @profile, :height, classes: "best_in_place_short", :path => user_profile_path(@user), nil: "click to edit" %></li>
+			<li class="bullet-item"><b>Gender:</b> <%= best_in_place @profile, :gender, classes: "best_in_place_short", :type => :select, :collection => [[1, "Male"], [2, "Female"]], :path => user_profile_path(@user), nil: "click to edit" %></li>
+			<li class="bullet-item"><b>Activity Level:</b>   <%= best_in_place @profile, :activity, classes: "best_in_place_activity", :type => :select, :collection => [[1, "1 - Sedentary"],[2, "2 - Light exercise (1-3 days per week)"],[3, "3 - Moderate exercise (3-5 days per week)"],[4, "4 - Heavy exercise (6-7 days per week"], [5, "5 - Very heavy exercise (Twice a day, extra heavy workouts)"]], :path => user_profile_path(@user), nil: "click to edit"%></li>
+		</ul>
+		<ul class="pricing-table">
+			<li class="title">Goals</li>
+			<li class="description">Adjust your goals by clicking the items</li>
+			<li class="bullet-item"><b>Desired weight gain/loss:</b> <%= best_in_place @profile, :changerate, classes: "best_in_place_changerate", :type => :select, :collection => [[1.00, "+1.00 kg a week"], [0.75, "+0.75kg a week"], [0.50, "+0.5 kg a week"], [0.25, "+0.25 kg a week"],[0.125, "+0.125 kg a week"], [0.00, "Maintain weight"], [-0.125, "-0.125 kg a week"], [-0.25, "-0.25 kg a week"], [-0.50, "-0.5 kg a week"], [-0.75, "-0.75 kg a week"],[-1.00, "-1.00 kg a week"]], :path => user_profile_path(@user), nil: "click to edit"%></li>
+			<% if @bodylog != nil && @profile.changerate != nil %>
+				<% if @bodylog.weight != nil %>
+					<li class="bullet-item"><b>Daily caloric target:</b> <%= get_target_calories(@profile, @bodylog.weight) %></li>
+				<% end %>
 			<% end %>
-		<% end %>
-		<li><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, :path => user_profile_path(@user), nil: "click to edit" %></li>
-	</ul>
+			<li class="bullet-item"><b>Caloric target workout days:</b></li>
+			<li class="bullet-item"><b>Caloric target rest days:</b></li>
+			<li class="bullet-item"><b>Target weight:</b> <%= best_in_place @profile, :weighttarget, classes: "best_in_place_short", :path => user_profile_path(@user), nil: "click to edit" %></li>
+		</ul>
+
 	</div>
 
-	<div class="large-4 columns">
-	<h3>Statistics</h3>
-	<h2>Body stats</h2>
-	
-		<% if @bodylog != nil && @profile.age != nil && @profile.height != nil && @profile.activity != nil && @profile.gender != nil %>
-			<ul>
-				<li>
-					<b>Estimated rate of fat loss (in kg per week):</b> <% if changerate != nil %>
-																			<%= number_with_precision(changerate, precision:2) %>
-																		<% else %>
-																			This function is only available with
-																			consistent daily logging of results.
-				 														<% end %>
+	<div class="large-6 columns">
 
-				</li>
-				<li> 
-					<b>Weeks until target weight:</b> 
-					<% if is_number(time_estimate(@profile)) %>
-						<%= number_with_precision(time_estimate(@profile), precision:1) %>
-					<% else %>
-						<%= time_estimate(@profile) %>
-					<% end %>
-				</li>
+			<ul class="pricing-table">
+				<li class="title">Statistics</li>
+				<li class="description">Visit <%= link_to  "Settings", setting_path(current_user) %> to adjust your maintenance calculator.</li>
+			<% if @bodylog && @profile.age  && @profile.height && @profile.activity && @profile.gender %>
+				
+					<li class="bullet-item">
+						<b>Estimated rate of weight change per week:</b> <% if changerate %>
+																				<%= number_with_precision(changerate, precision:2) %> kg
+																			<% else %>
+																				This function requires 7 consistent daily log entries
+					 														<% end %>
 
-				<% expenditure = harrisbenedict(@profile.gender, @profile.height, @profile.age, @bodylog.weight, @profile.activity) %>
-				<li>
-					<b><span data-tooltip class="has-tip" title="Basal Metabolic Rate.">BMR:</span></b> <%= number_with_precision(expenditure[:brm], precision: 0) %>
-				</li>
-				<li>
-					<b><span data-tooltip class="has-tip" title="Total calories burned: BMR + daily activity multiplier.">Maintenance caloric need:</span></b>  <%= number_with_precision(expenditure[:maintenance], precision: 0) %>
-				</li>
+					</li>
+					<li class="bullet-item">
+						<b>Actual rate of weight change per week:</b> <% if actualChangeRate %>
+																				<%= number_with_precision(actualChangeRate, precision:2) %>
+																			<% else %>
+																				This function requires 7 consistent daily log entries
+																			<% end %>
+					</li>
+					<li class="bullet-item">
+						<b>Discrepancy between Estimate and Actual change rate:</b> <% if actualChangeRate.to_f != 0 && changerate.to_f != 0 %>
+																						<%= number_with_precision((actualChangeRate - changerate).abs, precision:2) %> kg
+																					<% else %>
+																					-
+																					<% end %>
+					</li>
+					<li class="bullet-item"> 
+						<b>Weeks until target weight:</b> 
+						<% if is_number(time_estimate(@profile)) %>
+							<%= number_with_precision(time_estimate(@profile), precision:1) %>
+						<% else %>
+							<%= time_estimate(@profile) %>
+						<% end %>
+					</li>
 
-				<li>
-					<b>Current weight:</b> <%= @bodylog.weight %>
-				</li>
-				<li>
-					<b>Current bodyfat %:</b> <%= get_fat(@bodylogs) %>
-				</li>
-			</ul>
-		<% else %>
+					<% expenditure = harrisbenedict(@profile.gender, @profile.height, @profile.age, @bodylog.weight, @profile.activity) %>
+					<li class="bullet-item">
+						<b><span data-tooltip class="has-tip" title="Basal Metabolic Rate.">BMR:</span></b> <%= number_with_precision(expenditure[:brm], precision: 0) %>
+					</li>
+					<li class="bullet-item">
+						<b><span data-tooltip class="has-tip" title="Total calories burned: BMR + daily activity multiplier + personal calibration (available in settings menu)">Maintenance caloric need:</span></b>  <%= number_with_precision(expenditure[:maintenance], precision: 0) %>
+					</li>
 
-			<p>You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</p>
-	<% end %>
+					<li class="bullet-item">
+						<b>Current weight:</b> <%= @bodylog.weight %>
+					</li>
+					<li class="bullet-item">
+						<b>Current bodyfat %:</b> <%= get_fat(@bodylogs) %>
+					</li>
+			
+			<% else %>
 
-
-
+				<li class="bullet-item">You must first enter a body log before we can display your BMR, maintenance, rate of change and days until target weight</li>
+			<% end %>
+		</ul>
 </div>
 
 

@@ -14,19 +14,34 @@
         <a href="#<%= workout.id %>"> <%= workout.created_at.strftime("%d %b. %Y") %> | <%= workout.name %></a>
         <div id="<%= workout.id %>" class="content">
 
-          
-          <% if workout.comment != nil && !workout.comment.blank?%>
-            <div class="panel">
+        
+          <div class="panel">
+            <% if workout.comment && !workout.comment.blank? %>
               <h2>Comment</h2>
-              <p><%= workout.comment %></p>
+              <p><%= workout.comment %></p> 
+            <% end %>
+            <% if workout.rating %>
               <p>Rating: <b><%= display_workout_rating(workout.rating) %></b></p>
-            </div>
-          <% end %>
+            <% end %>
+            <% workoutStats = get_total_reps_sets_weight(workout) %>
+            <% if workoutStats[:totalsets] %>
+              <h2>Stats</h2>
+
+              padding-left: ;<li>Total sets:  <b><%= workoutStats[:totalsets] %></b></li>
+              <li>Total reps: <b><%= workoutStats[:totalreps] %></b></li>
+              <li>Total weight moved: <b><%= workoutStats[:totalweight] %> kg</b></li>
+            <% end %>
+          </div>
+
 
           <% workout.exercises.each do |e| %>
             <%= render 'exercises_table', e: e %>
-            <% end %>
-            
+          <% end %>
+
+          <% workout.cardios.each do |c| %>
+            <%= render 'cardios_table', c: c %>
+          <% end %>
+          
 <ul class="button-group">
   <li>
      <%= link_to "edit", edit_workout_path(workout), class: 'tiny button secondary' %>  </li>

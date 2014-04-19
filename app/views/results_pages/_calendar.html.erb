@@ -23,9 +23,6 @@
 					<ul>
 					<% for workout in workouts %>
 						<li><b>Workout:</b> <%= workout.name %></li>
-						<% if workout.rating != nil %>
-							<li><b>Rating:</b><%= get_rating(workout.rating) %></li>
-						<% end %>
 					<% end %>
 					</ul>		
 				<% end %>

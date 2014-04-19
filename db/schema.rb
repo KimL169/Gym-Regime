@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202224649) do
+ActiveRecord::Schema.define(version: 20140415172121) do
 
   create_table "bodylogs", force: true do |t|
     t.float    "weight"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 20140202224649) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cardio_segments", force: true do |t|
+    t.integer  "time"
+    t.integer  "intensity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "cardio_id"
+  end
+
+  create_table "cardios", force: true do |t|
+    t.string   "name"
+    t.integer  "intensity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "workout_id"
+    t.integer  "user_id"
   end
 
   create_table "contact_forms", force: true do |t|
@@ -60,6 +77,17 @@ ActiveRecord::Schema.define(version: 20140202224649) do
     t.float    "strength"
     t.integer  "pr"
   end
+
+  create_table "settings", force: true do |t|
+    t.string   "var",         null: false
+    t.text     "value"
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -24,7 +24,7 @@
             </section>
            <% end %>
           <section class="middle tab-bar-section">
-            <h1 class="title">WORKOUT BOOK</h1>
+            <h1 class="title">GYM REGIME</h1>
           </section>
 
           <section class="right-small">
@@ -37,7 +37,7 @@
           <ul class="off-canvas-list">
             <li><label>Logbook</label></li>
             <li><%= link_to "Workout entry", new_workout_path %></li>
-            <li><%= link_to "Bodylog entry", new_bodylog_path %></li>
+            <li><%= link_to "Bodystat entry", new_bodylog_path %></li>
             <li><label></label></li>
             <li><%= link_to "Results", '/results' %></li>
           </ul>
@@ -48,7 +48,8 @@
           <ul class="off-canvas-list">
           <% if signed_in? %>
             <li><label>User</label></li>
-            <li><%= link_to "Profile", user_profile_path(current_user) %></li>
+            <li><%= link_to "Dashboard", user_profile_path(current_user) %></li>
+            <li><%= link_to "Settings", setting_path(current_user) %></li>
             <li><label>Account</label></li>
               <li><%= link_to "Edit Account", edit_user_path(current_user) %></li>
               <li><%= link_to "Sign out", signout_path, method: "delete" %></li>

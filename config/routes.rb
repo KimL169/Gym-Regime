@@ -2,11 +2,11 @@ Logbook::Application.routes.draw do
   resources :contact_forms, only: [:new, :create]
   resources :users do
      resource :profile, :controller => 'profile'
-     resource :setting, :controller => 'setting'
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :bodylogs
   resources :workouts
+  resources :settings, :controller => 'settings', only: [:show, :update]
  
  
   root 'static_pages#home'
@@ -18,7 +18,7 @@ Logbook::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'contact_forms#new', via: 'get'
-  match '/tools', to: 'tools#caloriecalc', via: 'get'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

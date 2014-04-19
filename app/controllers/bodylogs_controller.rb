@@ -30,6 +30,7 @@ class BodylogsController < ApplicationController
 		@bodylog = @user.bodylogs.new(bodylog_params)
 		@bodylogscount = @user.bodylogs.count
 		if @bodylog.save
+			@bodylog.updated_at = @bodylog.created_at #this is for chart display using updated_at exclusively.
 			flash.now[:success] = "Log entry succesful!"
 			redirect_to '/results' 
       	else
@@ -56,7 +57,7 @@ class BodylogsController < ApplicationController
 		# Secure parameters for bodylog form
 		#######
 		def bodylog_params
-			params.require(:bodylog).permit(:weight, :bodyfat, :kcal, :created_at)
+			params.require(:bodylog).permit(:weight, :bodyfat, :kcal, :created_at, :updated_at)
 		end
 
 end

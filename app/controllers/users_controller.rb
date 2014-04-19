@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user, only: [:edit, :update] #make sure only signed in users can update their account
-	before_action :correct_user, only: [:edit, :update] #make sure only the correct user can update their account.
+	before_action :signed_in_user, only: [:edit, :update]
+	before_action :correct_user, only: [:edit, :update] 
 
 	#####
 	# Initialize a new user for the sign up form
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			sign_in @user
-			flash[:success] = "Welcome to the WorkoutBook #{@user.name}!"
+			flash[:success] = "Welcome to the Gym Regime #{@user.name}!"
 			redirect_to new_user_profile_path(:user_id => @user)
 		else
 			render 'new'
